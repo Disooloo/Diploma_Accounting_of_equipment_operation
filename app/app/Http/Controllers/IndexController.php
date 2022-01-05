@@ -31,4 +31,34 @@ class IndexController extends Controller
     {
         return view('admin.branches.index');
     }
+    public function local()
+    {
+        return view('admin.location.index');
+    }
+    public function stats()
+    {
+        return view('admin.stats.index');
+    }
+    public function view_object()
+    {
+        return view('admin.view_objects.index');
+    }
+    public function type_object()
+    {
+        return view('admin.type_objects.index');
+    }
+    public function model_object()
+    {
+        return view('admin.model_object.index');
+    }
+    public function type_work()
+    {
+        return view('admin.type_work.index');
+    }
+    public function full_user_adm()
+    {
+        return view('admin.full_user_adm.index');
+    }
+
+
 }
