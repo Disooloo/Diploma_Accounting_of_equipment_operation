@@ -59,6 +59,18 @@ class IndexController extends Controller
     {
         return view('admin.full_user_adm.index');
     }
+    public function history()
+    {
+        return view('admin.history.index');
+    }
+    public function repair()
+    {
+        return view('admin.repair.index');
+    }
+    public function objectMain()
+    {
+        return view('admin.objectMain.index');
+    }
 
 
 }

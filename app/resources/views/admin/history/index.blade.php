@@ -1,5 +1,5 @@
 @extends('layouts.adm_layout')
-@section('title', 'Пользователи')
+@section('title', 'История зменения')
 
 @section('content')
 
@@ -17,10 +17,12 @@
     <div class="content-wrapper">
         <div class="callout callout-info ">
             <h5><i class="fas fa-info"></i> Подсказка:</h5>
-            Пользователь это логин сотрудника который работает с программой. У всех кто пользуется программой, должен
-            быть свой логин в системе, чтобы можно было понимать кто и когда создавал или изменял данные
-            в системе. Каждому пользователю необходимо указать его
-            роль, от которой зависит набор прав и доступов.
+            Все записи истории изменений по всем таблицам. Можно выбирать конкретную форму для просмотра истории
+            изменений или нажать крестик в выпадающем списке форм и просматривать сразу все записи
+            изменений по всем формам. По умолчанию история изменений отключена для всех форм. Включение ведения истории
+            изменений производится отдельно для каждой формы через Параметры" (пункт меню
+            "Параметры в верхнем правом углу любой табличной формы). На форме параметров необходимо поставить галку
+            Вести историю изменений".
         </div>
         <div class="card card-default collapsed-card container col-md-12">
             <div class="card-header ">
@@ -78,12 +80,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Пользователи</h1>
+                        <h1>История зменения</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active">Пользователи</li>
+                            <li class="breadcrumb-item active">История зменения</li>
                         </ol>
                     </div>
                 </div>
@@ -109,109 +111,87 @@
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="Browser: activate to sort column ascending">
-                                Имя <i class="fas fa-sort" style="cursor: pointer"></i>
+                                Дата <i class="fas fa-sort" style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="Platform(s): activate to sort column ascending">
-                                Email <i class="fas fa-sort" style="cursor: pointer"></i>
+                                Роль <i class="fas fa-sort" style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="Engine version: activate to sort column ascending">
-                                Описание <i class="fas fa-sort"
-                                            style="cursor: pointer"></i>
+                                Имя <i class="fas fa-sort"
+                                       style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="CSS grade: activate to sort column ascending">
-                                Последний вход <i class="fas fa-sort"
-                                                  style="cursor: pointer"></i>
+                                Форма <i class="fas fa-sort"
+                                         style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="CSS grade: activate to sort column ascending">
-                                Изображение
-                            </th>
-                            <th class="sorting" tabindex="0" aria-controls="example2"
-                                rowspan="1" colspan="1"
-                                aria-label="CSS grade: activate to sort column ascending">
-                                Роль <i class="fas fa-sort"
+                                Ключ <i class="fas fa-sort"
                                         style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="CSS grade: activate to sort column ascending">
-                                Заблокировать вход в систему
+                                Поле <i class="fas fa-sort"
+                                        style="cursor: pointer"></i>
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="example2"
                                 rowspan="1" colspan="1"
                                 aria-label="CSS grade: activate to sort column ascending">
-                                Действие
+                                Старое значение <i class="fas fa-sort"
+                                                   style="cursor: pointer"></i>
                             </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2"
+                                rowspan="1" colspan="1"
+                                aria-label="CSS grade: activate to sort column ascending">
+                                Новое значение <i class="fas fa-sort"
+                                                  style="cursor: pointer"></i>
+                            </th>
+
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="odd">
                             <td class="dtr-control sorting_1" tabindex="0">0</td>
-                            <td>User Name</td>
-                            <td>test@mail.ru</td>
-                            <td>description</td>
-                            <td>06.01.2022</td>
-                            <td>
-                                <a data-fancybox href="#hidden">
-                                    <i class="fas fa-image img_style"></i></a></td>
-
-                            <td style="color: #6ef36e">Админ</td>
-                            <td>
-                                <div class="icheck-danger d-inline">
-                                    <input type="radio" name="r2" id="radioDanger1">
-                                    <label for="radioDanger1">
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-info mr-3"><i class="fas fa-pen"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-
+                            <td>04.01.2022 14:35:32</td>
+                            <td>Админ</td>
+                            <td>Username</td>
+                            <td>Обьект</td>
+                            <td>30</td>
+                            <td>Стоимость</td>
+                            <td>0</td>
+                            <td>20000</td>
                         </tr>
                         <tr class="odd">
                             <td class="dtr-control sorting_1" tabindex="0">1</td>
-                            <td>User1</td>
-                            <td>test1@mail.ru</td>
-                            <td>description</td>
-                            <td>02.01.2022</td>
-                            <td>
-                                <a data-fancybox href="#hidden">
-                                    <i class="fas fa-image img_style"></i></a></td>
-                            <td style="color: #68d7ec">Пользователь</td>
-                            <td>
-                                <div class="icheck-danger d-inline">
-                                    <input type="radio" name="r2" checked id="radioDanger1">
-                                    <label for="radioDanger1">
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-info mr-3"><i class="fas fa-pen"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-
+                            <td>04.01.2022 14:39:32</td>
+                            <td>Админ</td>
+                            <td>UserName</td>
+                            <td>Обьект</td>
+                            <td>31</td>
+                            <td>ID</td>
+                            <td>Новая запись</td>
+                            <td>30</td>
                         </tr>
-
                         </tbody>
                         <tfoot>
                         <tr>
                             <th rowspan="1" colspan="1">id</th>
-                            <th rowspan="1" colspan="1">Вид</th>
-                            <th rowspan="1" colspan="1">Тип</th>
-                            <th rowspan="1" colspan="1">Модель</th>
-                            <th rowspan="1" colspan="1">Описание</th>
-                            <th rowspan="1" colspan="1">Изображение</th>
+                            <th rowspan="1" colspan="1">Дата</th>
                             <th rowspan="1" colspan="1">Роль</th>
-                            <th rowspan="1" colspan="1">Заблокировать вход в систему</th>
-                            <th rowspan="1" colspan="1">Действие</th>
+                            <th rowspan="1" colspan="1">Имя</th>
+                            <th rowspan="1" colspan="1">Форма</th>
+                            <th rowspan="1" colspan="1">Ключ</th>
+                            <th rowspan="1" colspan="1">Поле</th>
+                            <th rowspan="1" colspan="1">Старое значение</th>
+                            <th rowspan="1" colspan="1">Новое значение</th>
                         </tr>
                         </tfoot>
                     </table>

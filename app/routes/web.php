@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Номеклатура
 Route::get('/1', [App\Http\Controllers\IndexController::class, 'index'])->name('main'); // Главная
 Route::get('/2', [App\Http\Controllers\IndexController::class, 'comp'])->name('comp'); // Компании
 Route::get('/3', [App\Http\Controllers\IndexController::class, 'team'])->name('team'); //Сотрудники
@@ -26,6 +26,10 @@ Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->
 Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
 Route::get('/11', [App\Http\Controllers\IndexController::class, 'type_work'])->name('type_work'); // Тип работы
 Route::get('/12', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
+// Главные
+Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
+Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
+Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
 
 
 

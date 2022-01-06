@@ -76,7 +76,7 @@
                             <!-- /.card-header -->
                             <div class="card-body ">
                                 <div class="table-responsive">
-                                    <table id="tb_departments" class="table text-nowrap">
+                                    <table id="tb_departments" class="table text-nowrap table-bordered table-hover dataTable dtr-inline">
                                         <thead>
                                         <tr>
                                             <th>Id</th>
