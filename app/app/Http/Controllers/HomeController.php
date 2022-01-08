@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function teamRecovery(Request $request, Team $team)
+    {
+        $team->dop1_id = $request->dop1_id;
+        $team->save();
+
+        return view('admin.team.show', compact('team'));
     }
 }

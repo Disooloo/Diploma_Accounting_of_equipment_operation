@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 // Номеклатура
 Route::get('/1', [App\Http\Controllers\IndexController::class, 'index'])->name('main'); // Главная
 Route::get('/2', [App\Http\Controllers\IndexController::class, 'comp'])->name('comp'); // Компании
+Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
+
 Route::get('/3', [App\Http\Controllers\IndexController::class, 'team'])->name('team'); //Сотрудники
 Route::get('/4', [App\Http\Controllers\IndexController::class, 'team1'])->name('team1'); //Сотрудники detail
+
+Route::resource('team', TeamController::class);
+
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 Route::get('/5', [App\Http\Controllers\IndexController::class, 'branches'])->name('branches'); // Филиалы
 Route::get('/6', [App\Http\Controllers\IndexController::class, 'local'])->name('local'); // Местоположение
@@ -30,6 +36,10 @@ Route::get('/12', [App\Http\Controllers\IndexController::class, 'full_user_adm']
 Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
 Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
 Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
+Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
+Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
+
+Route::get('/srm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
 
 
 

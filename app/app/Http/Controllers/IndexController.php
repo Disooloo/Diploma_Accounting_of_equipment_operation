@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -15,13 +16,19 @@ class IndexController extends Controller
     {
         return view('admin.company.index');
     }
-    public function team()
+    public function org()
     {
-        return view('admin.team.index');
+        return view('admin.organizations.index');
     }
-    public function team1()
+
+
+
+    public function team1(Request $request, Team $team)
     {
-        return view('admin.team.show');
+        $team->dop1_id = $request->dop1_id;
+        $team->save();
+
+        return view('admin.team.show', compact('team'));
     }
     public function news()
     {
@@ -70,6 +77,18 @@ class IndexController extends Controller
     public function objectMain()
     {
         return view('admin.objectMain.index');
+    }
+    public function workTime()
+    {
+        return view('admin.workTime.index');
+    }
+    public function crm()
+    {
+        return view('admin.crm.index');
+    }
+    public function movements()
+    {
+        return view('admin.movements.index');
     }
 
 

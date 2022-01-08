@@ -109,28 +109,28 @@
             <div class="card card-solid">
                 <div class="card-body pb-0">
                     <div class="row">
+
+                        @foreach($teams as $team)
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
                             <div class="card bg-light d-flex flex-fill">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
+                                    {{$team->Post}}
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
+                                            <h2 class="lead"><b>{{$team->FirstName}} {{$team->LastName}}</b></h2>
+                                            <p class="text-muted text-sm"><b>Описание: </b> {{$team->Description}} </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
+                                                            class="fas fa-lg fa-building"></i></span> Адрес: <span>{{$team->Adress}}</span>
                                                 </li>
                                                 <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
+                                                    <a href="tel:{{$team->Phone}}"> {{$team->Phone}}</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
+                                            <img src="{{$team->Avatar}}" alt="user-avatar"
                                                  class="img-circle img-fluid">
                                         </div>
                                     </div>
@@ -140,241 +140,14 @@
                                         <a href="#" class="btn btn-sm bg-teal">
                                             <i class="fas fa-comments"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
+                                        <a href="{{route('team.show', $team->id)}}" class="btn btn-sm btn-primary">
                                             <i class="fas fa-user"></i> Просмотреть
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    Дизайнер
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>Николай Персон</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> Web Designer / UX / Graphic
-                                                Artist / Coffee Lover </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: Г.Москва,
-                                                    ул. Перская, д. 43
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:+79999992222"> +79999992222</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="../../dist/img/user1-128x128.jpg" alt="user-avatar"
-                                                 class="img-circle img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>

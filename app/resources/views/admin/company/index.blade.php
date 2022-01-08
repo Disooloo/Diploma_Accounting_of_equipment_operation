@@ -79,8 +79,7 @@
                                     <td>1.7</td>
                                     <td>A</td>
                                     <td>A</td>
-                                    <td><a href="{{asset('/dist/img/prod-5.jpg')}}"> <img
-                                                src="{{asset('/dist/img/prod-5.jpg')}}" width="150px"></a></td>
+                                    <td></td>
                                     </tr>
                                     </tbody>
                                     <tfoot>

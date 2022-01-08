@@ -10,7 +10,7 @@
                 <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">User Name</a>
+                <a href="#" class="d-block">User name</a>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu-close">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="fas fa-home mr-2"></i>
                         <p>
                             Главное
@@ -69,7 +69,7 @@
                     </ul>
                 </li>
                 <li class="nav-item menu-close">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
                         <i class="fas fa-list mr-2"></i>
                         {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
                         <p>
@@ -79,7 +79,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-building mr-2"></i>
                                 <p>Компании</p>
                             </a>
@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('team.index') }}"  class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
                                 <i class="fas fa-users mr-2"></i>
                                 <p>Сотрудники</p>
                             </a>
@@ -176,6 +176,15 @@
                         <i class="fas fa-file-alt mr-2"></i>
                         <p>
                             Процессы
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('crm')}}" class="nav-link">
+                    <a href="{{route('crm')}}" class="nav-link">
+                        <i class="fas fa-file-alt mr-2"></i>
+                        <p>
+                            SRM
                         </p>
                     </a>
                 </li>
