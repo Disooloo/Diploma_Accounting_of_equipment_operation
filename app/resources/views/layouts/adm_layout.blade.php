@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>@yield('title')</title>
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -34,7 +36,20 @@
     <script src="{{asset('fullcalendar/css/fc/fullcalendar.print.css')}}"></script>
     <script src="{{asset('fullcalendar/css/css/style.css')}}"></script>
 
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
+    <script src="{{asset('/plugins/fontawesome-free/css/all.min.css')}}"></script>
+    <script src="{{asset('/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}"></script>
+    <script src="{{asset('/plugins/toastr/toastr.min.css')}}"></script>
+    <script src="{{asset('/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}"></script>
+    <script src="{{asset('/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}"></script>
+    <!-- Kanban -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    @livewireStyles
+    <!-- ./Kanban -->
+
+    @yield('castom_css')
 </head>
 <body class="hold-transition dark-mode">
 <div class="wrapper">
@@ -113,25 +128,20 @@
 <script src="{{asset('fullcalendar/fc/fullcalendar.js')}}"></script>
 <script src="{{asset('fullcalendar/fc/lang-all.js')}}"></script>
 
+<!-- всплышающие подсказки -->
+<script src="{{asset('/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('/plugins/toastr/toastr.min.js')}}"></script>
+<script src="{{asset('/dist/js/alertsInfo.js')}}"></script>
+@yield('castom_js')
+
+<!-- Kanban -->
+@livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+
+<!-- ./Kanban -->
+
 
 <!-- Content Wrapper. Contains page content -->
 
-<script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
 </body>
 </html>

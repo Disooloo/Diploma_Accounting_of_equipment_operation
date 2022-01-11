@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,13 @@ Route::get('/1', [App\Http\Controllers\IndexController::class, 'index'])->name('
 Route::get('/2', [App\Http\Controllers\IndexController::class, 'comp'])->name('comp'); // Компании
 Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
 
-Route::get('/3', [App\Http\Controllers\IndexController::class, 'team'])->name('team'); //Сотрудники
-Route::get('/4', [App\Http\Controllers\IndexController::class, 'team1'])->name('team1'); //Сотрудники detail
+Route::get('/3', [IndexController::class, 'team'])->name('team'); //Сотрудники
+Route::get('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
+Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
+Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
 
 Route::resource('team', TeamController::class);
+//Route::get('team/settings', 'TeamController@bar@settings');
 
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 Route::get('/5', [App\Http\Controllers\IndexController::class, 'branches'])->name('branches'); // Филиалы
@@ -39,7 +43,7 @@ Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->
 Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
 Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 
-Route::get('/srm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
+Route::get('/crm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
 
 
 

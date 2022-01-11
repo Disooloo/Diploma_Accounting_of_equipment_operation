@@ -22,14 +22,51 @@ class IndexController extends Controller
     }
 
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function team1(Request $request, Team $team)
+    public function dop1team(Request $request, Team $team)
     {
         $team->dop1_id = $request->dop1_id;
-        $team->save();
+        $team->update();
 
         return view('admin.team.show', compact('team'));
     }
+    public function teamSettings(Request $request, Team $team)
+    {
+        $team->FirstName = $request->FirstName;
+        $team->LastName = $request->LastName;
+        $team->Patronymic = $request->Patronymic;
+        $team->email = $request->email;
+        $team->Skill = $request->Skill;
+        $team->Education = $request->Education;
+        $team->Description = $request->Description;
+        $team->update();
+
+        return view('admin.team.show', compact('team'));
+    }
+
+
+    public function team_test(Request $request, Team $team)
+    {
+
+        $res = Team::create(['FirstName' => $request->FirstName, 'LastName' => $request->LastName, 'Patronymic' => $request->Patronymic, 'email' => $request->email, 'Skill' => $request->Skill, 'Education' => $request->Education, 'Description' => $request->Description]);
+
+
+
+        $data = ['FirstName' => $request->FirstName, 'LastName' => $request->LastName, 'Patronymic' => $request->Patronymic, 'email' => $request->email, 'Skill' => $request->Skill, 'Education' => $request->Education, 'Description' => $request->Description];
+
+        return $data;
+
+
+    }
+
+
     public function news()
     {
         return view('admin.news.index');

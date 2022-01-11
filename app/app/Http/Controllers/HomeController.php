@@ -26,11 +26,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function teamRecovery(Request $request, Team $team)
-    {
-        $team->dop1_id = $request->dop1_id;
-        $team->save();
-
-        return view('admin.team.show', compact('team'));
-    }
 }

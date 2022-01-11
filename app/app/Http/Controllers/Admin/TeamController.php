@@ -73,9 +73,12 @@ class TeamController extends Controller
     public function update(Request $request, Team $team)
     {
         $team->Dismissed_team = $request->Dismissed_team;
-        $team->save();
+        $team->Dismissed = $request->Dismissed;
+
+        $team->update();
 
         return view('admin.team.show', compact('team'));
+
     }
     /**
      * Remove the specified resource from storage.
@@ -84,6 +87,11 @@ class TeamController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    public function settings($id)
     {
         //
     }

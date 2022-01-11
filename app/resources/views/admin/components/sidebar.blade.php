@@ -1,3 +1,10 @@
+<?
+$references = [
+    "team" => "Сотрудники"
+]
+
+?>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -10,7 +17,7 @@
                 <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">User name</a>
+                <a href="#" class="d-block">{{$user = auth()->user(['name']);}}</a>
             </div>
         </div>
 
@@ -69,7 +76,7 @@
                     </ul>
                 </li>
                 <li class="nav-item menu-close">
-                    <a href="#" class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
+                    <a href="#" class="nav-link @if($references){'active'} @endif">
                         <i class="fas fa-list mr-2"></i>
                         {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
                         <p>
@@ -105,7 +112,8 @@
                         <li class="nav-item">
                             <a href="{{ route('team.index') }}"  class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
                                 <i class="fas fa-users mr-2"></i>
-                                <p>Сотрудники</p>
+{{--                                <p>Сотрудники</p>--}}
+                                <p>{{$references['team']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -180,8 +188,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('crm')}}" class="nav-link">
-                    <a href="{{route('crm')}}" class="nav-link">
+                    <a href="{{route('crm')}}" class="nav-link {{ request()->routeIs('crm') ? 'active' : '' }}">
                         <i class="fas fa-file-alt mr-2"></i>
                         <p>
                             SRM

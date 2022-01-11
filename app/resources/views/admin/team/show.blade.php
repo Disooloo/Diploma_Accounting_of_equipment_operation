@@ -57,21 +57,31 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" value="1" name="Dismissed_team">
+
                                     @if($team['Dismissed_team'] == 0)
-                                        <input value="Уволить" type="submit"
-                                               class="btn btn-danger btn-block toastsDefaultSuccess"/>
+                                        <input type="date" name="Dismissed" id="Dismissed_team_data" name="Dismissed">
+                                        <script>
+                                            document.getElementById('Dismissed_team_data').valueAsDate = new Date();
+                                        </script>
+                                        <input value="Уволить" type="submit" id="Successfully_dismissed_employee"
+                                               class="btn btn-danger btn-block Successfully_dismissed_employee"/>
                                     @else
-                                        <form action="{{route('team.update', $team->id)}}" method="post">
+                                        <form method="post">
                                             @csrf
                                             @method('PUT')
                                             <div class="col-md-12 mt-3">
-                                                <input type=hidden value="0" name="Dismissed_team"/>
+                                                <input type="date" name="Dismissed" style="display: none"
+                                                       id="Dismissed_team_data" name="Dismissed">
+                                                <input type=hidden value="0" name="Dismissed_team" id="Dismissed_team"/>
                                                 <input value="Восстановить" type="submit"
-                                                       class="btn btn-primary btn-block"/>
+                                                       id="Successfully_restored_employee"
+                                                       class="btn btn-primary btn-block Successfully_restored_employee"/>
                                             </div>
+                                            <script>
+
+                                                document.getElementById('Dismissed_team_data').valueAsDate = new Date();
+                                            </script>
                                         </form>
-                                        {{--                                        <input data-fancybox value="Восстановить" type="submit" id="recovery"--}}
-                                        {{--                                               class="btn btn-primary btn-block"/>--}}
                                     @endif
                                 </form>
 
@@ -311,59 +321,65 @@
                                         </div>
                                     </div>
                                     <!-- /.tab-pane -->
-
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal">
                                             <div class="form-group row">
-                                                <label for="inputName" class="col-sm-2 col-form-label">Имя</label>
+                                                <label for="FirstName" class="col-sm-2 col-form-label">Имя</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputName"
+                                                    <input type="text" class="form-control" id="FirstName"
+                                                           name="FirstName"
                                                            placeholder="Имя" value="{{$team['FirstName']}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputName1" class="col-sm-2 col-form-label">Фамилия</label>
+                                                <label for="LastName" class="col-sm-2 col-form-label">Фамилия</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputName1"
-                                                           placeholder="Фамилия" value="{{$team['LastName']}}">
+                                                    <input type="text" class="form-control" id="LastName"
+                                                           placeholder="Фамилия" value="{{$team['LastName']}}"
+                                                           name="LastName">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputName2" class="col-sm-2 col-form-label">Отчество</label>
+                                                <label for="Patronymic" class="col-sm-2 col-form-label">Отчество</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputName2"
-                                                           placeholder="Отчество" value="{{$team['Patronymic']}}">
+                                                    <input type="text" class="form-control" id="Patronymic"
+                                                           placeholder="Отчество" value="{{$team['Patronymic']}}"
+                                                           name="Patronymic">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail"
-                                                           placeholder="Email" value="{{$team['email']}}">
+                                                    <input type="email" class="form-control" id="email"
+                                                           placeholder="Email" value="{{$team['email']}}" name="email">
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="inputExperience"
+                                                <label for="Skill"
                                                        class="col-sm-2 col-form-label">Навыки</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputExperience"
-                                                              placeholder="Навыки">{{$team['Skill']}}</textarea>
+                                                    <textarea class="form-control" id="Skill"
+                                                              placeholder="Навыки"
+                                                              name="Skill">{{$team['Skill']}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputExperience1" class="col-sm-2 col-form-label">Образование</label>
+                                                <label for="Education"
+                                                       class="col-sm-2 col-form-label">Образование</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputExperience1"
-                                                              placeholder="Образование">{{$team['Education']}}</textarea>
+                                                    <textarea class="form-control" id="Education"
+                                                              placeholder="Образование"
+                                                              name="Education">{{$team['Education']}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputExperience2"
+                                                <label for="Description"
                                                        class="col-sm-2 col-form-label">Записи</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputExperience2"
-                                                              placeholder="Записи">{{$team['Description']}}</textarea>
+                                                    <textarea class="form-control" id="Description"
+                                                              placeholder="Записи"
+                                                              name="Description">{{$team['Description']}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -371,8 +387,8 @@
                                                     <div class="checkbox">
                                                         <label>
                                                             <div class="icheck-primary col-md-12">
-                                                                <input type="radio" class="radio1" id="allow">
-                                                                <label for="allow">
+                                                                <input type="radio" id="text1233" class="radio2">
+                                                                <label for="text1233">
                                                                     Я согласен с правилами и
                                                                     условиями
                                                                 </label>
@@ -383,7 +399,8 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">
-                                                    <button type="submit" disabled id="submit" class="btn btn-danger">
+                                                    <button type="submit" id="team_profil_settings"
+                                                            class="btn btn-danger">
                                                         Изменить
                                                     </button>
                                                 </div>
@@ -412,9 +429,9 @@
                 Donec hendrerit efficitur ex vitae euismod. Maecenas ut leo vitae ipsum dictum <br>
                 cursus vel vitae nulla.
             </p>
-            <form method="post" action="{{route('team1', $team->id)}}">
+            <form method="post" action="{{route('dop1team', $team->id)}}">
                 @csrf
-                @method('PUT')
+                @method('GET')
                 <div class="form-group">
                     <div class="icheck-primary col-md-12">
                         @if($team['dop1_id'] == 0)
@@ -428,40 +445,20 @@
                     </div>
                     <div class="col-md-12 mt-3">
                         <input type=hidden value="1" name="dop1_id"/>
-                        <input type=submit id=submit value=Отправить disabled class="btn btn-info"/>
+                        <input type=submit id=submit value=Отправить class="btn btn-info"/>
                     </div>
 
                 </div>
             </form>
         </div>
-        <div style="display: none; width: 500px; height: 500px; color: black" id="recovery" class="fancybox1">
-            <h2>Востановление сотрудника</h2>
-            <hr>
-            <p>
-                Вы точно хотите восстановить сотрудника {{$team['LastName']}} {{$team['FirstName']}}
-            </p>
-            <form action="{{route('team.update', $team->id)}}" method="post">
-                @csrf
-                @method('PUT')
-                <div class="col-md-12 mt-3">
-                    <input type=hidden value="0" name="Dismissed_team"/>
-                    <input type=submit id=submit value=Восстановить disabled class="btn btn-info"/>
-                </div>
-            </form>
-        </div>
         <!-- /.content -->
     </div>
+
+
+@section('castom_js')
     <script>
-        document.getElementById('allow').addEventListener('change', function (e) {
-            document.getElementById('submit').disabled = !e.target.checked
-        })
-        $('.toastsDefaultSuccess').click(function () {
-            $(document).Toasts('create', {
-                class: 'bg-success',
-                title: 'Toast Title',
-                subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
+
+
     </script>
+@endsection
 @endsection
