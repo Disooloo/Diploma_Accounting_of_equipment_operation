@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\notification;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $notifications = notification::orderBy('id', 'desc');
+        $notifications_count = notification::all()->count();
+
+        return view('admin.index', compact('notifications', 'notifications_count'));
+
     }
 }

@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Kanban\Card;
 use App\Models\Kanban\Group;
+use App\Models\notification;
 use App\Models\Team;
 use Facade\Ignition\Tests\Support\Models\Car;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Kanban extends Component
@@ -104,9 +106,14 @@ class Kanban extends Component
             "email" => "required",
             "group_id" => "required",
         ]);
+        $data1 = ([
+            "title"  => "Добавление нвого пользователя",
+            "Description"  => "пользователя"
+        ]);
+
         $data["group->id"] = $this->addGroupState;
         Team::create($data);
-
+        notification::create($data1);
         $this->resetInput();
     }
 

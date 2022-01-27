@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProcessesController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->n
 Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
 
 Route::resource('team', TeamController::class);
-//Route::get('team/settings', 'TeamController@bar@settings');
+Route::get('team/settings', 'TeamController@bar@settings');
 
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 Route::get('/5', [App\Http\Controllers\IndexController::class, 'branches'])->name('branches'); // Филиалы
@@ -44,7 +45,15 @@ Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->na
 Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 
 Route::get('/crm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
+Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');//processesFile
+Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word');//processesFile
 
+
+Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index');//global_settings
+Route::get('/notification', [IndexController::class, 'notification_full'])->name('notification_full.index');//notification_full
+Route::delete('/notification/remove/', [IndexController::class, 'notification_destroy'])->name('notification_destroy.index');//notification_destroy
+
+//Route::resource('/notification', NotificationsConstoller::class);//notification_full
 
 
 

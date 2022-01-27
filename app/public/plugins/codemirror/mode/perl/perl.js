@@ -454,7 +454,7 @@ CodeMirror.defineMode("perl",function(){
                 tie                             :1,     // - bind a variable to an object class
                 tied                            :1,     // - get a reference to the object underlying a tied variable
                 time                            :1,     // - return number of seconds since 1970
-                times                           :1,     // - return elapsed time for self and child processes
+                times                           :1,     // - return elapsed time for self and child processesFile
                 tr                              :null,  // - transliterate a string
                 truncate                        :1,     // - shorten a file
                 uc                              :1,     // - return upper-case version of a string

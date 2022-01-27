@@ -49,7 +49,7 @@
     @livewireStyles
     <!-- ./Kanban -->
 
-    @yield('castom_css')
+    @yield('custom_css')
 </head>
 <body class="hold-transition dark-mode">
 <div class="wrapper">
@@ -132,7 +132,7 @@
 <script src="{{asset('/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('/plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{asset('/dist/js/alertsInfo.js')}}"></script>
-@yield('castom_js')
+@yield('custom_js')
 
 <!-- Kanban -->
 @livewireScripts

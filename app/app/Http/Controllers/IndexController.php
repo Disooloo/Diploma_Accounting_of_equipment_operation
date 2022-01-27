@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gparams;
+use App\Models\notification;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,9 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.index', compact('notifications', 'notifications_count'));
     }
     public function comp()
     {
@@ -18,20 +22,15 @@ class IndexController extends Controller
     }
     public function org()
     {
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
         return view('admin.organizations.index');
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     public function dop1team(Request $request, Team $team)
     {
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
         $team->dop1_id = $request->dop1_id;
         $team->update();
 
@@ -46,6 +45,9 @@ class IndexController extends Controller
         $team->Skill = $request->Skill;
         $team->Education = $request->Education;
         $team->Description = $request->Description;
+        $team->Avatar = $request->Avatar;
+
+
         $team->update();
 
         return view('admin.team.show', compact('team'));
@@ -54,18 +56,10 @@ class IndexController extends Controller
 
     public function team_test(Request $request, Team $team)
     {
-
         $res = Team::create(['FirstName' => $request->FirstName, 'LastName' => $request->LastName, 'Patronymic' => $request->Patronymic, 'email' => $request->email, 'Skill' => $request->Skill, 'Education' => $request->Education, 'Description' => $request->Description]);
-
-
-
         $data = ['FirstName' => $request->FirstName, 'LastName' => $request->LastName, 'Patronymic' => $request->Patronymic, 'email' => $request->email, 'Skill' => $request->Skill, 'Education' => $request->Education, 'Description' => $request->Description];
-
         return $data;
-
-
     }
-
 
     public function news()
     {
@@ -121,11 +115,35 @@ class IndexController extends Controller
     }
     public function crm()
     {
-        return view('admin.crm.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.crm.index', compact('notifications', 'notifications_count'));
     }
     public function movements()
     {
         return view('admin.movements.index');
+    }
+    public function global_settings()
+    {
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        $params = Gparams::orderBy('created_at', 'DESC')->paginate(1);
+
+        return view('admin.global_set.index', compact('params', 'notifications', 'notifications_count'));
+    }
+
+    public function notification_full()
+    {
+        $notifications = notification::orderBy('id', 'desc')->paginate(30);
+        return view('admin.notificationFC.index', compact('notifications'));
+    }
+
+    public function notification_destroy($id)
+    {
+        $notifications = notification::findOrFail($id);
+        $notifications->delete();
+        return redirect()->back();
     }
 
 

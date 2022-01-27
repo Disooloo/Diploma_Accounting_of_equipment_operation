@@ -85,7 +85,7 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
     "monitor_node","node","node_link","node_unlink","nodes","notalive",
     "now","open_port","pid_to_list","port_close","port_command",
     "port_connect","port_control","pre_loaded","process_flag",
-    "process_info","processes","purge_module","put","register",
+    "process_info","processesFile","purge_module","put","register",
     "registered","round","self","setelement","size","spawn","spawn_link",
     "spawn_monitor","spawn_opt","split_binary","statistics",
     "term_to_binary","time","throw","tl","trunc","tuple_size",

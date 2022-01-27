@@ -14,10 +14,10 @@ $references = [
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                <img src="https://ru-static.z-dn.net/files/dd0/68fde78db09d0068c87758fad3b46d2e.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{$user = auth()->user(['name']);}}</a>
+                <a href="#" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -180,7 +180,7 @@ $references = [
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('processes.index')}}" class="nav-link {{ request()->routeIs('processes.index') ? 'active' : '' }}">
                         <i class="fas fa-file-alt mr-2"></i>
                         <p>
                             Процессы
@@ -191,7 +191,15 @@ $references = [
                     <a href="{{route('crm')}}" class="nav-link {{ request()->routeIs('crm') ? 'active' : '' }}">
                         <i class="fas fa-file-alt mr-2"></i>
                         <p>
-                            SRM
+                            СRM
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('global_settings.index')}}" class="nav-link {{ request()->routeIs('global_settings.index') ? 'active' : '' }}">
+                        <i class="fas fa-cogs"></i>
+                        <p>
+                            Глобальные параметры
                         </p>
                     </a>
                 </li>

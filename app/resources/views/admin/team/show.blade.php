@@ -59,10 +59,12 @@
                                     <input type="hidden" value="1" name="Dismissed_team">
 
                                     @if($team['Dismissed_team'] == 0)
-                                        <input type="date" name="Dismissed" id="Dismissed_team_data" name="Dismissed">
+                                        <input type="date" style="color:black" name="Dismissed" id="Dismissed_team_data"
+                                               name="Dismissed">
                                         <script>
                                             document.getElementById('Dismissed_team_data').valueAsDate = new Date();
                                         </script>
+
                                         <input value="Уволить" type="submit" id="Successfully_dismissed_employee"
                                                class="btn btn-danger btn-block Successfully_dismissed_employee"/>
                                     @else
@@ -70,7 +72,7 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="col-md-12 mt-3">
-                                                <input type="date" name="Dismissed" style="display: none"
+                                                <input type="date" name="Dismissed" style="display: none "
                                                        id="Dismissed_team_data" name="Dismissed">
                                                 <input type=hidden value="0" name="Dismissed_team" id="Dismissed_team"/>
                                                 <input value="Восстановить" type="submit"
@@ -322,7 +324,9 @@
                                     </div>
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" action="{{route('teamSettings', $team->id)}}">
+                                            @csrf
+                                            @method('PUT')
                                             <div class="form-group row">
                                                 <label for="FirstName" class="col-sm-2 col-form-label">Имя</label>
                                                 <div class="col-sm-10">
@@ -383,28 +387,21 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="offset-sm-2 col-sm-10">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <div class="icheck-primary col-md-12">
-                                                                <input type="radio" id="text1233" class="radio2">
-                                                                <label for="text1233">
-                                                                    Я согласен с правилами и
-                                                                    условиями
-                                                                </label>
-                                                            </div>
-                                                        </label>
+                                                <label for="Avatar" class="col-sm-2 col-form-label">Аватарка</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="Avatar"
+                                                           placeholder="Аватарка" value="{{$team['Avatar']}}"
+                                                           name="Avatar">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="form-group row">
+                                                    <div class="offset-sm-2 col-sm-10">
+                                                        <input type="submit"
+                                                               class="btn btn-info" value="Изменить"/>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="offset-sm-2 col-sm-10">
-                                                    <button type="submit" id="team_profil_settings"
-                                                            class="btn btn-danger">
-                                                        Изменить
-                                                    </button>
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                     <!-- /.tab-pane -->
@@ -431,7 +428,7 @@
             </p>
             <form method="post" action="{{route('dop1team', $team->id)}}">
                 @csrf
-                @method('GET')
+                @method('POST')
                 <div class="form-group">
                     <div class="icheck-primary col-md-12">
                         @if($team['dop1_id'] == 0)
@@ -457,7 +454,6 @@
 
 @section('castom_js')
     <script>
-
 
     </script>
 @endsection
