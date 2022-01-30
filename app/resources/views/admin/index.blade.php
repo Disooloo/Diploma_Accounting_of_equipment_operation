@@ -87,7 +87,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{$team_count}}</h3>
 
                                 <p>Сотрудников компании</p>
                             </div>
@@ -152,7 +152,36 @@
                             </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Сотрудники компании</h3>
 
+                                <div class="card-tools">
+                                    <span class="badge badge-danger">8 новых сотрудников</span>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <ul class="users-list clearfix">
+                                    @foreach($teams as $team)
+                                        <li>
+                                            <img src="{{$team->Avatar}}" alt="User Image">
+                                            <a class="users-list-name" href="#">{{$team->LastName}} {{$team->FirstName}}</a>
+                                            <span class="users-list-date">{{$team->Hired}}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <!-- /.users-list -->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer text-center">
+                                <a href="{{route('team.index')}}">Все сотрудники</a>
+                            </div>
+                            <!-- /.card-footer -->
+                        </div>
                         <!-- TO DO List -->
                         <div class="card">
                             <div class="card-header">

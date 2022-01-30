@@ -1,6 +1,9 @@
 <?
 $references = [
-    "team" => "Сотрудники"
+    "team" => "Сотрудники",
+    "company" => "Компании",
+    "branches" => "Филиалы",
+    "location" => "Местоположение",
 ]
 
 ?>
@@ -17,7 +20,7 @@ $references = [
                 <img src="https://ru-static.z-dn.net/files/dd0/68fde78db09d0068c87758fad3b46d2e.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                <a href="#" class="d-block">UserNamec</a>
             </div>
         </div>
 
@@ -86,21 +89,21 @@ $references = [
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('company.index')}}" class="nav-link  {{ request()->routeIs('company.index') ? 'active' : '' }}">
                                 <i class="far fa-building mr-2"></i>
-                                <p>Компании</p>
+                                <p>{{$references['company']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('branches.index')}}" class="nav-link {{ request()->routeIs('branches.index') ? 'active' : '' }}">
                                 <i class="fas fa-code-branch mr-2"></i>
-                                <p>Филиалы</p>
+                                <p>{{$references['branches']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('location.index')}}" class="nav-link  {{ request()->routeIs('location.index') ? 'active' : '' }}">
                                 <i class="fas fa-search-location mr-2"></i>
-                                <p>Местоположение</p>
+                                <p>{{$references['location']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">

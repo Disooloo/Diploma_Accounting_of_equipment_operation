@@ -25,6 +25,7 @@
         </section>
         <!-- Main content -->
         <div class="card">
+            <h1 class="cm-header ml-3 mt-2">Всего увидомлений: {{$notifications_count}} | На странице: {{$notifications->count()}}</h1>
             <div class="row mt-3 ml-3 mr-3">
                 @foreach($notifications as $notification)
                     <div class="col-md-3">
@@ -36,7 +37,7 @@
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-plus"></i>
                                     </button>
-                                    <form id="form" action="{{route('notification_destroy.index', $notification['id'] )}}"
+                                    <form id="form" action="{{route('notification.destroy', $notification['id'] )}}"
                                           method="post">
                                         @csrf
                                         @method("DELETE")
@@ -59,8 +60,13 @@
                     </div>
             @endforeach
 
+
             <!-- /.col -->
             </div>
+            <div class="links mr-3"  >
+                {{$notifications->links()}}
+            </div>
+
         </div>
         <!-- /.content -->
     </div>

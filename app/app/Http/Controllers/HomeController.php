@@ -28,7 +28,11 @@ class HomeController extends Controller
         $notifications = notification::orderBy('id', 'desc');
         $notifications_count = notification::all()->count();
 
-        return view('admin.index', compact('notifications', 'notifications_count'));
+        $teams = Team::orderBy('id', 'desc')->paginate(8);
+        $team_count = Team::all()->count();
+
+        return view('admin.index', compact('notifications', 'notifications_count',
+            'team_count', 'teams'));
 
     }
 }

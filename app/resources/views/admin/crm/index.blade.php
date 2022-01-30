@@ -67,11 +67,6 @@
             @livewire("kanban")
         <!-- /.content -->
 
-        <div style="display: none; width: 500px;" id="hidden" class="fancybox">
-            <h2>Контент из скрытого div</h2>
-            <img src="https://becompact.ru/upload/iblock/2ec/2ec3eba0b51ea40b19e5d8edf817eb54.jpg"
-                 width="250px" alt="">
-        </div>
         <!--/.fancybox-->
     </div>
     <!-- /.content-wrapper -->

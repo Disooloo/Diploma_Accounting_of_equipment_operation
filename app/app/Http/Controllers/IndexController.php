@@ -18,7 +18,10 @@ class IndexController extends Controller
     }
     public function comp()
     {
-        return view('admin.company.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.company.index', compact('notifications', 'notifications_count'));
     }
     public function org()
     {
@@ -65,13 +68,12 @@ class IndexController extends Controller
     {
         return view('admin.news.index');
     }
-    public function branches()
-    {
-        return view('admin.branches.index');
-    }
     public function local()
     {
-        return view('admin.location.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.location.index', compact('notifications', 'notifications_count'));
     }
     public function stats()
     {
@@ -107,7 +109,9 @@ class IndexController extends Controller
     }
     public function objectMain()
     {
-        return view('admin.objectMain.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.objectMain.index', compact('notifications', 'notifications_count'));
     }
     public function workTime()
     {
@@ -136,7 +140,8 @@ class IndexController extends Controller
     public function notification_full()
     {
         $notifications = notification::orderBy('id', 'desc')->paginate(30);
-        return view('admin.notificationFC.index', compact('notifications'));
+        $notifications_count = notification::all()->count();
+        return view('admin.notificationFC.index', compact('notifications', 'notifications_count'));
     }
 
     public function notification_destroy($id)

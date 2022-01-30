@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gparams;
 use App\Models\notification;
 use App\Models\Processes;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class ProcessesController extends Controller
 
         $processes = Processes::orderBy('created_at', 'DESC')->paginate(9);
 
-        return view('admin.processes.index', compact('processes', 'notifications', 'notifications_count'));
+        $Global_param = Gparams::all();
+
+        return view('admin.processes.index', compact('processes',
+            'notifications', 'notifications_count', 'Global_param'));
     }
 
     public function nda_word()
@@ -76,5 +80,59 @@ class ProcessesController extends Controller
         // Прочитать файл
         readfile($downloadFile);
         unlink($outputFile);
+    }
+    public function vacation()
+    {
+
+        $documentVacation = new TemplateProcessor('./processesFile/vacation.docx');
+
+        $outputFile = 'vacation.docx';
+
+        $general_manager = $_POST['general_manager'];
+        $company = $_POST['company'];
+        $worker = $_POST['worker'];
+
+        $worker_post = $_POST['worker_post'];
+        $dateStart = $_POST['dateStart'];
+        $dateEnd = $_POST['dateEND'];
+        $date = $_POST['date'];
+
+
+        $d1 = $dateStart;
+        $d2 = $dateEnd;
+        $d1_ts = strtotime($d1);
+        $d2_ts = strtotime($d2);
+        $seconds = abs($d1_ts - $d2_ts);
+        $count_day = floor($seconds / 86400);
+
+
+
+        $documentVacation->setValue('general_manager', $general_manager);
+        $documentVacation->setValue('company', $company);
+        $documentVacation->setValue('worker', $worker);
+        $documentVacation->setValue('worker_post', $worker_post);
+        $documentVacation->setValue('dateStart', $dateStart);
+        $documentVacation->setValue('dateEnd', $dateEnd);
+        $documentVacation->setValue('count_day', $count_day);
+
+        $documentVacation->setValue('date', $date);
+
+        $documentVacation->saveAs($outputFile);
+        // Имя скачиваемого файла
+        $downloadFile = $outputFile;
+
+        // Контент-тип означающий скачивание
+        header("Content-Type: application/octet-stream");
+        // Размер в байтах
+        header("Accept-Ranges: bytes");
+        // Размер файла
+        header("Content-Length: " . filesize($downloadFile));
+        // Расположение скачиваемого файла
+        header("Content-Disposition: attachment; filename=" . $downloadFile);
+        // Прочитать файл
+        readfile($downloadFile);
+        unlink($outputFile);
+
+
     }
 }

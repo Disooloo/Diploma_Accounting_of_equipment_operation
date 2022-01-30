@@ -32,10 +32,10 @@
                             <span class="float-right text-muted text-sm">{{$notification->create}}</span>
                         </a>
                          @if (++$i == 5) <?break?> @endif
-                    @endforeach
+                @endforeach
 
                 <div class="dropdown-divider"></div>
-                <a href="{{route('notification_destroy.index')}}" class="dropdown-item dropdown-footer">Все увидомления</a>
+                <a href="{{route('notification.index')}}" class="dropdown-item dropdown-footer">Все увидомления</a>
             </div>
 
         </li>

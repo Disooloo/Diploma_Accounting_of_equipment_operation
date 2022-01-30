@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\BranchesConstoller;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\NotificationsConstoller;
 use App\Http\Controllers\Admin\ProcessesController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\IndexController;
@@ -16,21 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Номеклатура
-Route::get('/1', [App\Http\Controllers\IndexController::class, 'index'])->name('main'); // Главная
-Route::get('/2', [App\Http\Controllers\IndexController::class, 'comp'])->name('comp'); // Компании
 Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
 
-Route::get('/3', [IndexController::class, 'team'])->name('team'); //Сотрудники
-Route::get('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
-Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
-Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
-
-Route::resource('team', TeamController::class);
-Route::get('team/settings', 'TeamController@bar@settings');
-
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
-Route::get('/5', [App\Http\Controllers\IndexController::class, 'branches'])->name('branches'); // Филиалы
-Route::get('/6', [App\Http\Controllers\IndexController::class, 'local'])->name('local'); // Местоположение
 Route::get('/7', [App\Http\Controllers\IndexController::class, 'stats'])->name('stats'); // Статусы
 Route::get('/8', [App\Http\Controllers\IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
 Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
@@ -44,16 +36,31 @@ Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->
 Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
 Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 
+
+
+
+
+//Route::get('/6', [App\Http\Controllers\IndexController::class, 'local'])->name('local'); // Местоположение
+Route::resource('location', LocationController::class);
+
+
+// Готовое
+Route::resource('team', TeamController::class);
+Route::get('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
+Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
+Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
+
+
+
 Route::get('/crm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
 Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');//processesFile
 Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word');//processesFile
+Route::post('/processesFile/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation');//processesFile/vacation
 
-
+Route::resource('/company', CompanyController::class);
 Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index');//global_settings
-Route::get('/notification', [IndexController::class, 'notification_full'])->name('notification_full.index');//notification_full
-Route::delete('/notification/remove/', [IndexController::class, 'notification_destroy'])->name('notification_destroy.index');//notification_destroy
-
-//Route::resource('/notification', NotificationsConstoller::class);//notification_full
+Route::resource('/notification', NotificationsConstoller::class);//notification_full
+Route::resource('branches', BranchesConstoller::class);
 
 
 

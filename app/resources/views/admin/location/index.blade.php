@@ -38,6 +38,8 @@
     </style>
 
     <div class="content-wrapper">
+
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -56,30 +58,31 @@
         </section>
         <div class="callout callout-info ">
             <h5><i class="fas fa-info"></i> Подсказка:</h5>
-            Редактирование записи происходит по клику на id записи. Чтоб просмотреть местоположение, кликните по
-            названию филиала.
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa eligendi labore porro quasi repellendus sed sit sunt ullam unde.
 
         </div>
+
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-primary card-outline">
-                            <div class="card-header">
 
-                                {{--                                <div class="col-12">--}}
-                                {{--                                    <input type="submit" value="Добавить" class="btn 						btn-success float-right">--}}
-                                {{--                                </div>--}}
-
-                            </div>
                             <!-- /.card-header -->
                             <div class="card-body ">
+                                <div class="card-header">
+                                    <a href="{{route('location.create')}}" class="mr-5">Привязать</a>
+                                    <a href="#">Выгрузить</a>
+
+                                </div>
                                 <div class="table-responsive">
-                                    <table id="tb_departments" class="table text-nowrap table-bordered table-hover dataTable dtr-inline">
+                                    <table id="tb_departments"
+                                           class="table text-nowrap table-bordered table-hover dataTable dtr-inline">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>id</th>
                                             <th>Местоположение</th>
                                             <th>Привязка к филиалу</th>
                                             <th>Описание</th>
@@ -92,74 +95,60 @@
                                             <th>Реквизиты</th>
                                             <th>Примечание</th>
                                             <th>Изображение</th>
-                                            <th>Место "Склад"</th>
-                                            <th>Место "Ремонт"</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                <li class="visible">
-                                                    <a tabindex="0" class="all btn text-white textBol"
-                                                       data-coords="55.75089601550643,37.83907298046876"
-                                                       data-id="1">0</a>
-                                                </li>
-                                            </td>
-                                            <td><a style="cursor: pointer">Аналитический отдел </a></td>
-                                            <td>Офис на тверской</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>A</td>
-                                            <td>A</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td><input type="checkbox" value="true"></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <li class="visible">
-                                                    <a tabindex="0" class="all btn text-white"
-                                                       data-coords="55.75089601550643,38.83907298046876"
-                                                       data-id="2">1</a>
-                                                </li>
-                                            </td>
-                                            <td><a style="cursor: pointer">Аналитический отдел </a></td>
-                                            <td>Офис на тверской</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>A</td>
-                                            <td>A</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td><input type="checkbox" value="true"></td>
-                                            <td><input type="checkbox" value="false"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a style="cursor: pointer">Аналитический отдел </a></td>
-                                            <td>Офис на тверской</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>1.7</td>
-                                            <td>A</td>
-                                            <td>A</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td> a</td>
-                                            <td><input type="checkbox" value="true"></td>
-                                            <td><input type="checkbox" checked></td>
-                                        </tr>
+                                        @foreach($location  as $local)
+
+                                            <tr>
+                                                <td>
+                                                    <li class="visible">
+                                                        <a tabindex="{{$local->id}}" class="all btn text-white textBol"
+                                                           data-coords="{{$local->Cordinates}}"
+                                                           data-id="{{$local->id}}">{{$local->id}}</a>
+                                                    </li>
+                                                </td>
+                                                <td><a style="cursor: pointer">{{$local->local}}</a></td>
+                                                <td>
+                                                    {{$local->id}}
+                                                </td>
+                                                <td>{{$local->Description}}</td>
+                                                <td>{{$local->Accountant_code}}</td>
+                                                <td>{{$local->phone}}</td>
+                                                <td>{{$local->Adress}}</td>
+                                                <td><a href="{{$local->Site}}">Перейти</a></td>
+                                                <td>{{$local->Email}}</td>
+                                                <td> {{$local->Contact_person}}</td>
+                                                <td><a data-fancybox href="#Requisites"><i class="fas fa-file-alt"></i></a>
+                                                </td>
+                                                <td><a data-fancybox href="#Note"><i class="fas fa-file-alt"></i></a>
+                                                </td>
+                                                <td><a data-fancybox href="#img"><i class="fas fa-images"></i></a></td>
+
+                                                <div style="display: none; width: 500px;" id="Requisites"
+                                                     class="fancybox dark-mode">
+                                                    <h1>Реквизиты</h1>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h2> {{$local->Requisites}}</h2>
+                                                </div>
+                                                <div style="display: none;  width: 500px;" id="Note"
+                                                     class="fancybox dark-mode">
+                                                    <h1>Примечание</h1>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h2>{{$local->Note}}</h2>
+                                                </div>
+                                                <div style="display: none; width: 500px;" id="img"
+                                                     class="fancybox dark-mode">
+                                                    <img src="{{$local->img}}" alt="img company" height="100%"
+                                                         width="100%">
+                                                </div>
+
+                                            </tr>
+
+
+
+                                        @endforeach
                                         </tbody>
                                         <tfoot>
                                         <tr>
@@ -176,12 +165,18 @@
                                             <th>Реквизиты</th>
                                             <th>Примечание</th>
                                             <th>Изображение</th>
-                                            <th>Место "Склад"</th>
-                                            <th>Место "Ремонт"</th>
+
                                         </tr>
                                         </tfoot>
+
                                     </table>
+
                                 </div>
+                                <div class="paginate mt-3 mb-3">
+                                    {{$location->links()}}
+                                </div>
+                                <div id="map"></div>
+
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
@@ -189,113 +184,65 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+
                 </div>
 
-                <!-- /.container-fluid -->
 
-
-                <div id="map"></div>
-                <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
-                <script>
-                    function init() {
-                        let arr = [];
-
-                        let myMap = new ymaps.Map("map", {
-                            center: [55.76, 37.64],
-                            zoom: 7
-                        });
-
-                        function markers() {
-
-                            myMap.setCenter([55.76, 37.64], 7, {
-                                checkZoomRange: true
-                            });
-
-                            myMap.geoObjects.removeAll()
-
-                            arr = [];
-                            let i = 0;
-
-                            document.querySelectorAll('.btn').forEach((el) => {
-                                let coords = el.getAttribute('data-coords');
-
-                                let id = el.getAttribute('data-id');
-
-                                let coordsArr = coords.split(',');
-
-                                let result = coordsArr.map(function (x) {
-                                    return Number(x);
-                                });
-
-                                arr.push('placemark' + i);
-                                i++;
-
-                                arr[i] = new ymaps.Placemark(result, {
-                                    'id': id,
-                                    // Зададим содержимое заголовка балуна.
-                                    balloonContentHeader: '<a href = "#">Рога и копыта</a><br>' +
-                                        '<span class="description">Сеть кинотеатров</span>',
-                                    // Зададим содержимое основной части балуна.
-                                    balloonContentBody: '<a href="tel:+7-123-456-78-90">+7 (123) 456-78-90</a><br/>' +
-                                        '<b>Ближайшие сеансы</b> <br/> Сеансов нет.',
-                                    // Зададим содержимое нижней части балуна.
-                                    balloonContentFooter: 'Информация предоставлена:<br/>OOO "Рога и копыта"',
-                                    // Зададим содержимое всплывающей подсказки.
-                                    hintContent: 'Рога и копыта'
-                                });
-
-                                myMap.geoObjects.add(arr[i]);
-
-                                delete arr[0];
-                            });
-                        }
-
-                        markers();
-
-                        myMap.events.add('boundschange', function () {
-                            let res = ymaps.geoQuery(myMap.geoObjects)
-
-                            let visibleObjects = res.searchInside(myMap).addToMap(myMap);
-
-                            let visibleArray = visibleObjects._objects;
-
-                            let $item = document.querySelectorAll('.btn');
-
-                            $item.forEach((el) => {
-
-                                el.closest('li').style.display = 'none';
-                            });
-
-                            for (let i = 0; i < visibleArray.length; i++) {
-                                let id = visibleArray[i].properties._data.id;
-
-
-                                document.querySelectorAll(`.btn[data-id="${id}"]`).forEach((el) => {
-                                    el.closest('li').style.display = 'block';
-                                });
-                            }
-                            if (!visibleArray.length) {
-
-                            }
-
-                        });
-                    }
-
-                    ymaps.ready(init);
-                </script>
         </section>
         <!-- /.content -->
     </div>
+   @section('custom_js')
+       <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
 
-    <script>
-        $('#editID').click(function () {
-            alert('Редактирование записи');
-        });
-        $(document).ready(function () {
-            $('#dtHorizontalExample').DataTable({
-                "scrollX": true
-            });
-            $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
+       <script>
+           <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+       <!-- /.container-fluid -->
+       <script type="text/javascript">
+           ymaps.ready(init);
+           function init() {
+               var myMap = new ymaps.Map("map", {
+                   center: [56.11281, 56.11281],
+                   zoom: 16
+               }, {
+                   searchControlProvider: 'yandex#search'
+               });
+
+               var myCollection = new ymaps.GeoObjectCollection();
+
+               <?php foreach ($location as $local): ?>
+               var myPlacemark = new ymaps.Placemark([
+                   <?php echo $local['Cordinates']; ?>
+               ], {
+                   balloonContentHeader: 'Локация: <a href = "#"><?=$local['local']; ?></a><br>' + 'Филиал: <a href = "#"><?=$local['id_branches']; ?></a><br>' +
+                       '<span class="description"><?=$local['Email']; ?></span>',
+                   balloonContentBody: '<a href="tel:+<?=$local['phone'];?>">+<?=$local['phone'];?></a><br/>' +
+                       '<img src="<?=$local['img'];?>" width="150px"> <br/> <a href="<?=$local['Site'];?>">Перейти на сайт</a>',
+                   {{--balloonContentFooter: <?php echo $local['Description'];?>,--}}
+
+               }, {
+                   preset: 'islands#nightDotIcon',
+                   iconColor: '#0000ff'
+               });
+               myCollection.add(myPlacemark);
+               <?php endforeach; ?>
+
+               myMap.geoObjects.add(myCollection);
+
+               // Сделаем у карты автомасштаб чтобы были видны все метки.
+               myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
+           }
+       </script>
+
+       <script>
+           $('#editID').click(function () {
+               alert('Редактирование записи');
+           });
+           $(document).ready(function () {
+               $('#dtHorizontalExample').DataTable({
+                   "scrollX": true
+               });
+               $('.dataTables_length').addClass('bs-select');
+           });
+       </script>
+   @endsection
 @endsection

@@ -3,25 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branches;
+use App\Models\Location;
 use App\Models\notification;
-use App\Models\Team;
 use Illuminate\Http\Request;
 
-
-class TeamController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $notifications = notification::orderBy('id', 'desc')->paginate(30);
+        $notifications = notification::orderBy('id', 'desc')->limit(15)->get();
         $notifications_count = notification::all()->count();
 
-        $teams = Team::orderBy('created_at', 'DESC')->paginate(12);
-        return view('admin.team.index', compact('teams', 'notifications', 'notifications_count'));
+        $location = Location::orderBy('id', 'desc')->paginate(15);
+
+
+        return view('admin.location.index', compact('location',
+        'notifications', 'notifications_count'));
     }
 
     /**
@@ -31,7 +35,10 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        $notifications = notification::orderBy('id', 'desc')->limit(15)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.location.create', compact('notifications', 'notifications_count'));
     }
 
     /**
@@ -42,7 +49,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -51,11 +58,9 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show($id)
     {
-        $notifications = notification::orderBy('id', 'desc')->paginate(30);
-        $notifications_count = notification::all()->count();
-        return view('admin.team.show', compact('team', 'notifications', 'notifications_count'));
+        //
     }
 
     /**
@@ -64,9 +69,9 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -76,16 +81,11 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, $id)
     {
-        $team->Dismissed_team = $request->Dismissed_team;
-        $team->Dismissed = $request->Dismissed;
-
-        $team->update();
-
-        return view('admin.team.show', compact('team'));
-
+        //
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -96,6 +96,4 @@ class TeamController extends Controller
     {
         //
     }
-
-
 }

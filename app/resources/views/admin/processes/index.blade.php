@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
                             <li class="breadcrumb-item active">Процессы</li>
                         </ol>
                     </div>
@@ -103,16 +103,13 @@
 
         <section class="content">
             <div class="container-fluid">
-                <h5 class="mb-2">
-                    <button class="btn btn-info">Добавить</button>
-                </h5>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-info"><i class="fas fa-calendar-times"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text" title="Договор о неразглошении">NDA</span>
-                                <span class="info-box-number"> <a data-fancybox href="#openFormWord"
+                                <span class="info-box-number"> <a data-fancybox href="#NDA1openFormWord"
                                                                   style="cursor: pointer">Открыть</a> </span>
                             </div>
                             <!-- /.info-box-content -->
@@ -120,7 +117,19 @@
                         <!-- /.info-box -->
                     </div>
                     <!-- /.col -->
-
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text" title="Договор о неразглошении">Отпуск</span>
+                                <span class="info-box-number"> <a data-fancybox href="#Vacation1OpenFormWord"
+                                                                  style="cursor: pointer">Открыть</a> </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
                 </div>
                 <!-- /.row -->
             </div>
@@ -130,139 +139,5 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <div style="display: none; width: 800px; color: black" id="openFormWord" class="fancybox dark-mode">
-        <form action="{{route('processesFile.nda_word')}}" method="post" >
-            @csrf
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Заявление о неразглошении</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form class="form-horizontal">
-                    <div class="card-body">
-                        <label>Данные работодателя:</label>
-                        <div class="form-group row">
-                            <label for="inputGeneral_manager" class="col-sm-2 col-form-label">Генеральный
-                                директор</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputGeneral_manager" name="general_manager"
-                                       placeholder="ФИО генерального директора">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="inputCity" class="col-sm-2 col-form-label">Город</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCity" name="city"
-                                       placeholder="Город в котором находится компания">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Компания</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputPassword3" name="company"
-                                       placeholder="ООО Название компании">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputDate" class="col-sm-2 col-form-label">Дата</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" id="inputDate" name="date"
-                                       placeholder="Дата заключение договора">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputCompany_adress" class="col-sm-2 col-form-label">Адрес компании</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCompany_adress" name="company_adress"
-                                       placeholder="Адрес компании">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputCompany_KPP" class="col-sm-2 col-form-label">КПП работодателя</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCompany_KPP" name="company_KPP"
-                                       placeholder="КПП работодателя">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputCompany_INN" class="col-sm-2 col-form-label">ИНН работодателя</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCompany_INN" name="company_INN"
-                                       placeholder="ИНН">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputCompany_chet" class="col-sm-2 col-form-label">Расчетный счет
-                                работодателя</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCompany_chet" name="company_chet"
-                                       placeholder="р/счет №">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputCompany_bink" class="col-sm-2 col-form-label">БИК работодателя</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputCompany_bink" name="company_bink"
-                                       placeholder="БИК">
-                            </div>
-                        </div>
-                        <label>Данные сотрудника:</label>
-                        <div class="form-group row">
-                            <label for="inputWorker" class="col-sm-2 col-form-label">Работник</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputWorker" name="worker"
-                                       placeholder=" ФИО Работника">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputWorker_pass" class="col-sm-2 col-form-label">Паспорт сотрудника</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputWorker_pass" name="worker_pass"
-                                       placeholder="Паспорт сотрудника...">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputWorker_pass_time" class="col-sm-2 col-form-label">Дата выдачи
-                                паспорта</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" id="inputWorker_pass_time"
-                                       name="worker_pass_time" placeholder="Паспорт выдан">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputWorker_pass_adress" class="col-sm-2 col-form-label">Адрес выдачи
-                                паспорта</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputWorker_pass_adress"
-                                       name="worker_pass_adress" placeholder="Адрес выдачи паспорта">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputWorker_adress" class="col-sm-2 col-form-label">Адрес сотрудника</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputWorker_adress" name="worker_adress"
-                                       placeholder="Адрес сотрудника">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputWorker_straxjvka" class="col-sm-2 col-form-label">Страховка
-                                сотрудника</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputWorker_straxjvka"
-                                       name="worker_straxjvka" placeholder="Страховое свидетельство">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-info">Скачать</button>
-                    </div>
-                    <!-- /.card-footer -->
-                </form>
-            </div>
-        </form>
-    </div>
-
+@include('admin.processes.doc')
 @endsection
