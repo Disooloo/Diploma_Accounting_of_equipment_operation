@@ -58,7 +58,8 @@
         </section>
         <div class="callout callout-info ">
             <h5><i class="fas fa-info"></i> Подсказка:</h5>
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa eligendi labore porro quasi repellendus sed sit sunt ullam unde.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa eligendi labore porro quasi
+            repellendus sed sit sunt ullam unde.
 
         </div>
 
@@ -74,7 +75,7 @@
                             <div class="card-body ">
                                 <div class="card-header">
                                     <a href="{{route('location.create')}}" class="mr-5">Привязать</a>
-                                    <a href="#">Выгрузить</a>
+                                    <a href="{{route('export_location')}}">Выгрузить</a>
 
                                 </div>
                                 <div class="table-responsive">
@@ -95,7 +96,7 @@
                                             <th>Реквизиты</th>
                                             <th>Примечание</th>
                                             <th>Изображение</th>
-
+                                            <th>Действие</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -111,7 +112,7 @@
                                                 </td>
                                                 <td><a style="cursor: pointer">{{$local->local}}</a></td>
                                                 <td>
-                                                    {{$local->id}}
+                                                    {{$local->id_branches}}
                                                 </td>
                                                 <td>{{$local->Description}}</td>
                                                 <td>{{$local->Accountant_code}}</td>
@@ -143,11 +144,18 @@
                                                     <img src="{{$local->img}}" alt="img company" height="100%"
                                                          width="100%">
                                                 </div>
+                                                <td>
+                                                    <a href="{{route('location.edit', $local->id )}}" class="btn btn-success mb-3"><i class="fas fa-pen "></i></a>
+                                                    <form action="{{route('location.destroy', $local->id)}}"
+                                                          method="POST">
+                                                        @csrf
+                                                        @method("DELETE")
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                </td>
 
                                             </tr>
-
-
-
                                         @endforeach
                                         </tbody>
                                         <tfoot>
@@ -165,7 +173,7 @@
                                             <th>Реквизиты</th>
                                             <th>Примечание</th>
                                             <th>Изображение</th>
-
+                                            <th>Действие</th>
                                         </tr>
                                         </tfoot>
 
@@ -191,58 +199,59 @@
         </section>
         <!-- /.content -->
     </div>
-   @section('custom_js')
-       <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
+@section('custom_js')
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
 
-       <script>
-           <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
-       <!-- /.container-fluid -->
-       <script type="text/javascript">
-           ymaps.ready(init);
-           function init() {
-               var myMap = new ymaps.Map("map", {
-                   center: [56.11281, 56.11281],
-                   zoom: 16
-               }, {
-                   searchControlProvider: 'yandex#search'
-               });
+    <script>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
+    <!-- /.container-fluid -->
+    <script type="text/javascript">
+        ymaps.ready(init);
 
-               var myCollection = new ymaps.GeoObjectCollection();
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [56.11281, 56.11281],
+                zoom: 16,
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
 
-               <?php foreach ($location as $local): ?>
-               var myPlacemark = new ymaps.Placemark([
-                   <?php echo $local['Cordinates']; ?>
-               ], {
-                   balloonContentHeader: 'Локация: <a href = "#"><?=$local['local']; ?></a><br>' + 'Филиал: <a href = "#"><?=$local['id_branches']; ?></a><br>' +
-                       '<span class="description"><?=$local['Email']; ?></span>',
-                   balloonContentBody: '<a href="tel:+<?=$local['phone'];?>">+<?=$local['phone'];?></a><br/>' +
-                       '<img src="<?=$local['img'];?>" width="150px"> <br/> <a href="<?=$local['Site'];?>">Перейти на сайт</a>',
-                   {{--balloonContentFooter: <?php echo $local['Description'];?>,--}}
+            var myCollection = new ymaps.GeoObjectCollection();
 
-               }, {
-                   preset: 'islands#nightDotIcon',
-                   iconColor: '#0000ff'
-               });
-               myCollection.add(myPlacemark);
-               <?php endforeach; ?>
+            <?php foreach ($location as $local): ?>
+            var myPlacemark = new ymaps.Placemark([
+                <?php echo $local['Cordinates']; ?>
+            ], {
+                balloonContentHeader: 'Локация: <a href = "#"><?=$local['local']; ?></a><br>' + 'Филиал: <a href = "#"><?=$local['id_branches']; ?></a><br>' +
+                    '<span class="description"><?=$local['Email']; ?></span>',
+                balloonContentBody: '<a href="tel:+<?=$local['phone'];?>">+<?=$local['phone'];?></a><br/>' +
+                    '<img src="<?=$local['img'];?>" width="150px"> <br/> <a href="<?=$local['Site'];?>">Перейти на сайт</a>',
+                {{--balloonContentFooter: <?php echo $local['Description'];?>,--}}
 
-               myMap.geoObjects.add(myCollection);
+            }, {
+                preset: 'islands#nightDotIcon',
+                iconColor: '#0000ff'
+            });
+            myCollection.add(myPlacemark);
+            <?php endforeach; ?>
 
-               // Сделаем у карты автомасштаб чтобы были видны все метки.
-               myMap.setBounds(myCollection.getBounds(),{checkZoomRange:true, zoomMargin:9});
-           }
-       </script>
+            myMap.geoObjects.add(myCollection);
 
-       <script>
-           $('#editID').click(function () {
-               alert('Редактирование записи');
-           });
-           $(document).ready(function () {
-               $('#dtHorizontalExample').DataTable({
-                   "scrollX": true
-               });
-               $('.dataTables_length').addClass('bs-select');
-           });
-       </script>
-   @endsection
+            // Сделаем у карты автомасштаб чтобы были видны все метки.
+            myMap.setBounds(myCollection.getBounds(), {checkZoomRange: true, zoomMargin: 9});
+        }
+    </script>
+
+    <script>
+        $('#editID').click(function () {
+            alert('Редактирование записи');
+        });
+        $(document).ready(function () {
+            $('#dtHorizontalExample').DataTable({
+                "scrollX": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+@endsection
 @endsection

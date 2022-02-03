@@ -1,8 +1,7 @@
 @extends('layouts.adm_layout')
-@section('title', 'Привязка к филиалу')
+@section('title', 'Редактирование местоположения')
 
 @section('content')
-
     <style>
         .dtHorizontalExampleWrapper {
             max-width: 600px;
@@ -71,11 +70,11 @@
                     <div class="col-12">
                         <div class="card card-primary card-outline">
 
-                            <form id="formCreateLocal" action="{{route('location.store')}}" method="POST">
+                            <form id="formCreateLocal" action="{{route('location.update', $location['id'] )}}"
+                                  method="post">
                                 @csrf
+                                @method("PUT")
                                 <div class="m-4">
-
-                                    {{-- local--}}
                                     <div class="card card-info">
                                         <div class="card-header">
                                             <h3 class="card-title">Заполните все поля</h3>
@@ -92,7 +91,7 @@
                                                                 class="fas fa-search-location"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control"
-                                                           placeholder="Локация (Каб. директора)" name="local">
+                                                           placeholder="Локация (Каб. директора)" name="local" value="{{$location['local']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -124,7 +123,7 @@
                                                                 class="fas fa-clipboard-list"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control" placeholder="Описание"
-                                                           name="Description">
+                                                           name="Description" value="{{$location['Description']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -140,7 +139,7 @@
                                                                 class="fas fa-sort-numeric-up-alt"></i></span>
                                                     </div>
                                                     <input type="number" class="form-control"
-                                                           placeholder="Бух. номер (214)" name="Accountant_code">
+                                                           placeholder="Бух. номер (214)" name="Accountant_code" value="{{$location['Accountant_code']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -156,7 +155,7 @@
                                                                 class="fas fa-phone"></i></span>
                                                     </div>
                                                     <input type="number" class="form-control" placeholder="79999999999"
-                                                           name="phone">
+                                                           name="phone" value="{{$location['phone']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -171,7 +170,7 @@
                                                                 class="fas fa-map-marker-alt"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control"
-                                                           placeholder="Г.москва, улица, дом..." name="Adress">
+                                                           placeholder="Г.москва, улица, дом..." name="Adress" value="{{$location['Adress']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -186,7 +185,7 @@
                                                                 class="fas fa-map-marker-alt"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control"
-                                                           placeholder="56.125281, 69.441993" name="Cordinates">
+                                                           placeholder="56.125281, 69.441993" name="Cordinates" value="{{$location['Cordinates']}}">
                                                 </div>
                                                 <a data-fancybox href="#findCoordination">Получить координаты</a>
                                             </div>
@@ -200,7 +199,7 @@
                                                             <i class="fas fa-sitemap"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control" placeholder="www.site.com"
-                                                           name="Site">
+                                                           name="Site" value="{{$location['Site']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -215,7 +214,7 @@
                                                                 class="fas fa-envelope"></i></span>
                                                     </div>
                                                     <input type="email" class="form-control" placeholder="test@mail.ru"
-                                                           name="Email">
+                                                           name="Email" value="{{$location['Email']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -229,7 +228,7 @@
                                                         <span class="input-group-text"><i class="fas fa-user-check"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control" placeholder="Иванов И.В"
-                                                           name="Contact_person">
+                                                           name="Contact_person" value="{{$location['Contact_person']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -244,7 +243,7 @@
                                                                 class="fas fa-credit-card"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control"
-                                                           placeholder="4000 99230 02223 222332" name="Requisites">
+                                                           placeholder="4000 99230 02223 222332" name="Requisites" value="{{$location['Requisites']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -258,7 +257,7 @@
                                                         <span class="input-group-text"><i class="far fa-clipboard"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control" placeholder="Примечание"
-                                                           name="Note">
+                                                           name="Note" value="{{$location['Note']}}">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -274,9 +273,10 @@
                                                     </div>
                                                     <input type="text" class="form-control"
                                                            placeholder="https://www.stratecent.com/Images/client_mini.jpg"
-                                                           value="https://www.stratecent.com/Images/client_mini.jpg"
+                                                           value="{{$location['img']}}"
                                                            name="img">
                                                 </div>
+                                                <img src="{{$location['img']}}" width="250px" alt="">
                                                 <!-- /.input group -->
                                             </div>
                                             <!-- /.form group -->

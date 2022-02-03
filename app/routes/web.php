@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\BranchesConstoller;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\NotificationsConstoller;
 use App\Http\Controllers\Admin\ProcessesController;
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
 
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
-Route::get('/7', [App\Http\Controllers\IndexController::class, 'stats'])->name('stats'); // Статусы
 Route::get('/8', [App\Http\Controllers\IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
 Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
 Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
@@ -37,11 +39,8 @@ Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->na
 Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 
 
-
-
-
-//Route::get('/6', [App\Http\Controllers\IndexController::class, 'local'])->name('local'); // Местоположение
-Route::resource('location', LocationController::class);
+Route::get('/7', [App\Http\Controllers\IndexController::class, 'stats'])->name('stats'); // Статусы
+Route::resource('/status', StatsController::class);
 
 
 // Готовое
@@ -61,9 +60,17 @@ Route::resource('/company', CompanyController::class);
 Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index');//global_settings
 Route::resource('/notification', NotificationsConstoller::class);//notification_full
 Route::resource('branches', BranchesConstoller::class);
+Route::resource('location', LocationController::class);
 
 
 
+//Export
+Route::get('export/location', [ExportController::class, 'export_location'])->name('export_location');
+//
+
+//Ajax
+Route::post('status/add',[AjaxController::class, 'statusStore']);
+//
 
 Route::get('/', function () {
     return view('welcome');

@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="col-6">
-                        <input type="submit" value="Создать" class="btn btn-success float-left">
+                        <a data-fancybox href="#addStatus" class="btn btn-success float-left">Создать</a>
                     </div>
                     <div class="col-6">
                         <input type="submit" value="Применить фильтр" class="btn btn-info float-right">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
                             <li class="breadcrumb-item active">Статусы</li>
                         </ol>
                     </div>
@@ -82,75 +82,31 @@
             <div class="card">
                 <!-- Default box -->
                 <div class="card-body ">
-                    <div class="card card-primary collapsed-card col-md-6">
-                        <div class="card-header">
-                            <h3 class="card-title">К списанию</h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-pen"></i></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-trash-alt"></i></i>
-                                </button>
+                    @foreach($stats as $stat)
+                        <div class="card card-primary collapsed-card col-md-6">
+                            <div class="card-header">
+                                <h3 class="card-title">{{$stat->title}}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse1"><i
+                                            class="fas fa-pen"></i></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse2"><i
+                                            class="fas fa-trash-alt"></i></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
                             </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body" style="display: none;">
-                            Подготовлено к списанию
+                            <!-- /.card-header -->
+                            <div class="card-body" style="display: none;">
+                                {{$stat->description}}
+                            </div>
+                            <!-- /.card-body -->
                         </div>
                         <!-- /.card-body -->
-                    </div>
-                    <div class="card card-primary collapsed-card col-md-6">
-                        <div class="card-header">
-                            <h3 class="card-title">На складе ОК</h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-pen"></i></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-trash-alt"></i></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body" style="display: none;">
-                            Находится на складе в рабочем состоянии
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <div class="card card-primary collapsed-card col-md-6">
-                        <div class="card-header">
-                            <h3 class="card-title">На складе новый</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-pen"></i></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-trash-alt"></i></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body" style="display: none;">
-                            Находится на складе в рабочем состоянии до этого не спользовался
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card-body -->
+                    @endforeach
                 </div>
             </div>
             <!-- /.card-body -->
@@ -159,4 +115,67 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <div style="display: none; width: 500px;" id="addStatus"
+         class="fancybox dark-mode">
+        <form id="addform">
+            @csrf
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Заполните все поля</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Название</label>
+                                    <input type="text" name="title" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label>Textarea</label>
+                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter ..." style="height: 69px;"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="submit" value="Отправить" class="btn btn-info">
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </form>
+    </div>
+
+@section('custom_js')
+    <script>
+        $(document).ready(function () {
+            $('#addform').on('submit', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/status/add",
+                    data: $('#addform').serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        $.fancybox.close;
+                        alert("200");
+                    },
+                    error: function (error) {
+                        console.log("error" + error);
+                        alert(error);
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
 @endsection

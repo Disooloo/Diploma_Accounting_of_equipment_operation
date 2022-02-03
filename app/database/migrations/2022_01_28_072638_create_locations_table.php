@@ -16,7 +16,7 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('local');
-            $table->bigInteger('id_branches')->unsigned();
+            $table->string('id_branches');
             $table->text('Description');
             $table->integer('Accountant_code'); //Бух номер местоположения (214 | 211 ...)
             $table->string('phone');

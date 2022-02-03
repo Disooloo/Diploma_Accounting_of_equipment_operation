@@ -4,6 +4,7 @@ $references = [
     "company" => "Компании",
     "branches" => "Филиалы",
     "location" => "Местоположение",
+    "status" => "Статусы",
 ]
 
 ?>
@@ -107,9 +108,9 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('status.index')}}" class="nav-link {{ request()->routeIs('status.index') ? 'active' : '' }}">
                                 <i class="fas fa-tag mr-2"></i>
-                                <p>Статусы</p>
+                                <p>{{$references['status']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
