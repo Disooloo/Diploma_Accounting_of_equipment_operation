@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Номеклатура
-Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
 
 Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 Route::get('/8', [App\Http\Controllers\IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
@@ -39,8 +38,16 @@ Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->na
 Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 
 
-Route::get('/7', [App\Http\Controllers\IndexController::class, 'stats'])->name('stats'); // Статусы
-Route::resource('/status', StatsController::class);
+Route::get('/1', [App\Http\Controllers\IndexController::class, 'tesst123123'])->name('tesst123123');
+
+
+
+
+Route::resource('status', StatsController::class); // Потом вернуться
+
+Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
+
+Route::get('/my_profiles', [IndexController::class, 'my_profiles'])->name('my_profiles_user');
 
 
 // Готовое
@@ -68,14 +75,11 @@ Route::resource('location', LocationController::class);
 Route::get('export/location', [ExportController::class, 'export_location'])->name('export_location');
 //
 
-//Ajax
-Route::post('status/add',[AjaxController::class, 'statusStore']);
-//
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');

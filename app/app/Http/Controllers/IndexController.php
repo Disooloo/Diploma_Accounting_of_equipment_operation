@@ -12,9 +12,25 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+
+        $notifications = notification::orderBy('id', 'desc');
         $notifications_count = notification::all()->count();
-        return view('admin.index', compact('notifications', 'notifications_count'));
+
+        $teams = Team::orderBy('id', 'desc')->paginate(8);
+        $team_count = Team::all()->count();
+
+        return view('admin.index', compact('notifications', 'notifications_count',
+            'team_count', 'teams'));
+    }
+    public function my_profiles()
+    {
+
+        $notifications = notification::orderBy('id', 'desc');
+        $notifications_count = notification::all()->count();  
+
+
+        return view('admin.index', compact('notifications',
+            'notifications_count',));
     }
     public function comp()
     {
@@ -27,7 +43,8 @@ class IndexController extends Controller
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
-        return view('admin.organizations.index');
+
+        return view('admin.organizations.index' , compact('notifications', 'notifications_count'));
     }
 
     public function dop1team(Request $request, Team $team)
@@ -150,6 +167,17 @@ class IndexController extends Controller
         $notifications->delete();
         return redirect()->back();
     }
+
+    public function tesst123123()
+    {
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('test', compact('notifications', 'notifications_count'));
+
+    }
+
+
 
 
 }

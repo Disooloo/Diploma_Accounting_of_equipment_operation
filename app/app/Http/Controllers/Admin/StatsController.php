@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FStatus;
 use App\Models\notification;
 use App\Models\Stats;
 use Illuminate\Http\Request;
@@ -16,12 +17,14 @@ class StatsController extends Controller
      */
     public function index()
     {
-        $notifications = notification::orderBy('id', 'desc')->limit(15)->get();
-        $notifications_count = notification::all()->count();
-        $stats = Stats::orderBy('id', 'desc')->paginate(15);
 
-        return view('admin.stats.index', compact('stats', 'notifications',
-            'notifications_count' ));
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        $stats = FStatus::orderBy('id', 'desc')->paginate(15);
+
+        return view('admin.stats.index', compact('notifications',
+            'notifications_count', 'stats'));
     }
 
     /**
@@ -42,7 +45,16 @@ class StatsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stats = new FStatus();
+
+        $stats->title = $request->title;
+        $stats->description = $request->description;
+
+        $stats->save();
+
+        return redirect()->back();
+
+
     }
 
     /**
@@ -62,9 +74,13 @@ class StatsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(FStatus $stat)
     {
-        //
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.stats.update', compact('stat',
+        'notifications', 'notifications_count'));
     }
 
     /**

@@ -18,10 +18,10 @@ $references = [
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="https://ru-static.z-dn.net/files/dd0/68fde78db09d0068c87758fad3b46d2e.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ \Illuminate\Support\Facades\Auth::user()->img }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">UserNamec</a>
+                <a href="{{route('my_profiles_user')}}" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
             </div>
         </div>
 

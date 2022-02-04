@@ -85,17 +85,31 @@
                     @foreach($stats as $stat)
                         <div class="card card-primary collapsed-card col-md-6">
                             <div class="card-header">
-                                <h3 class="card-title">{{$stat->title}}</h3>
+                                <h3 class="card-title">#{{$stat->id}} {{$stat->title}}</h3>
                                 <div class="card-tools">
+
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-plus"></i>
                                     </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse1"><i
+                                    <a href="{{route('status.edit', $stat->id )}}" type="button" class="btn btn-tool" ><i
                                             class="fas fa-pen"></i></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse2"><i
+                                    </a>
+                                    <a data-fancybox href="#DeleteStatus" class="btn btn-tool" ><i
                                             class="fas fa-trash-alt"></i></i>
-                                    </button>
+                                    </a>
+
+                                    <div style="display: none; width: 500px;" id="DeleteStatus"
+                                         class="fancybox dark-mode">
+                                       <h1>Вы точно хотите удалить ?</h1>
+                                        <form action="{{route('status.destroy', $stat->id )}}"
+                                              method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="btn btn-danger " data-card-widget="collapse2">Удалить</i>
+                                            </button>
+                                        </form>
+                                    </div>
+
                                 </div>
                                 <!-- /.card-tools -->
                             </div>
@@ -118,7 +132,7 @@
 
     <div style="display: none; width: 500px;" id="addStatus"
          class="fancybox dark-mode">
-        <form id="addform">
+        <form action="{{route('status.store')}}" method="post">
             @csrf
             <div class="card card-warning">
                 <div class="card-header">
@@ -140,8 +154,8 @@
                             <div class="col-md-12">
                                 <!-- textarea -->
                                 <div class="form-group">
-                                    <label>Textarea</label>
-                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter ..." style="height: 69px;"></textarea>
+                                    <label>Описание</label>
+                                    <textarea name="description" class="form-control" rows="3"  style="height: 69px;"></textarea>
                                 </div>
                             </div>
 
@@ -155,27 +169,27 @@
     </div>
 
 @section('custom_js')
-    <script>
-        $(document).ready(function () {
-            $('#addform').on('submit', function (e) {
-                e.preventDefault();
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $('#addform').on('submit', function (e) {--}}
+{{--                e.preventDefault();--}}
 
-                $.ajax({
-                    type: "POST",
-                    url: "/status/add",
-                    data: $('#addform').serialize(),
-                    success: function (response) {
-                        console.log(response);
-                        $.fancybox.close;
-                        alert("200");
-                    },
-                    error: function (error) {
-                        console.log("error" + error);
-                        alert(error);
-                    }
-                });
-            });
-        });
-    </script>
+{{--                $.ajax({--}}
+{{--                    type: "POST",--}}
+{{--                    url: "/status/add",--}}
+{{--                    data: $('#addform').serialize(),--}}
+{{--                    success: function (response) {--}}
+{{--                        console.log(response);--}}
+{{--                        $.fancybox.close;--}}
+{{--                        alert("200");--}}
+{{--                    },--}}
+{{--                    error: function (error) {--}}
+{{--                        console.log("error" + error);--}}
+{{--                        alert(error);--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
 @endsection

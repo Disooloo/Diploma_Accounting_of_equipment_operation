@@ -108,7 +108,6 @@
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info">Отправить</button>
-
                                 </div>
                                 <!-- /.card-footer -->
                             </form>
