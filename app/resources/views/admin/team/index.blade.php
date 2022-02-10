@@ -13,7 +13,7 @@
         </div>
         <div class="card card-default collapsed-card container col-md-12">
             <div class="card-header ">
-                <h3 class="card-title">Фильтр</h3>
+                <h3 class="card-title">Параметры</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -76,7 +76,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-6">
+                        <a href="{{route('team.create')}}" class="btn btn-info">Дабавить сотрудника</a>
+                    </div>
+                    <div class="col-6">
                         <input type="submit" value="Применить фильтр"
                                class="btn 						btn-success float-right">
                     </div>
@@ -111,42 +114,44 @@
                     <div class="row">
 
                         @foreach($teams as $team)
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
-                            <div class="card bg-light d-flex flex-fill">
-                                <div class="card-header text-muted border-bottom-0">
-                                    {{$team->Post}}
-                                </div>
-                                <div class="card-body pt-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 class="lead"><b>{{$team->FirstName}} {{$team->LastName}}</b></h2>
-                                            <p class="text-muted text-sm"><b>Описание: </b> {{$team->Description}} </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Адрес: <span>{{$team->Adress}}</span>
-                                                </li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>Телефон:
-                                                    <a href="tel:{{$team->Phone}}"> {{$team->Phone}}</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-5 text-center">
-                                            <img src="{{$team->Avatar}}" alt="user-avatar"
-                                                 class="img-circle img-fluid">
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                <div class="card bg-light d-flex flex-fill">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        {{$team->Post}}
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>{{$team->FirstName}} {{$team->LastName}}</b></h2>
+                                                <p class="text-muted text-sm"><b>Описание: </b> {{$team->Description}} </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-building"></i></span> Адрес:
+                                                        <span>{{$team->Adress}}</span>
+                                                    </li>
+                                                    <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-phone"></i></span>Телефон:
+                                                        <a href="tel:{{$team->Phone}}"> {{$team->Phone}}</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="{{$team->Avatar}}" alt="user-avatar"
+                                                     class="img-circle img-fluid">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
-                                            <i class="fas fa-comments"></i>
-                                        </a>
-                                        <a href="{{route('team.show', $team->id)}}" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-user"></i> Просмотреть
-                                        </a>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="{{route('team.show', $team->id)}}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> Просмотреть
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
 
                     </div>
@@ -161,9 +166,11 @@
             <!-- /.card-footer -->
     </div>
     <!-- /.card -->
-
     </section>
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+
+
 @endsection

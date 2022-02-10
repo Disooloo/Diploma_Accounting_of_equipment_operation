@@ -106,14 +106,10 @@ class Kanban extends Component
             "email" => "required",
             "group_id" => "required",
         ]);
-        $data1 = ([
-            "title"  => "Добавление нвого пользователя",
-            "Description"  => "пользователя"
-        ]);
 
-        $data["group->id"] = $this->addGroupState;
+
         Team::create($data);
-        notification::create($data1);
+
         $this->resetInput();
     }
 

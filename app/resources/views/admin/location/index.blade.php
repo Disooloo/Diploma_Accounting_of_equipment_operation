@@ -1,8 +1,8 @@
 @extends('layouts.adm_layout')
 @section('title', 'Местоположение')
 
-@section('content')
 
+@section('custom_css')
     <style>
         .dtHorizontalExampleWrapper {
             max-width: 600px;
@@ -36,6 +36,10 @@
             height: 500px;
         }
     </style>
+@endsection
+@section('content')
+
+
 
     <div class="content-wrapper">
 
@@ -184,7 +188,6 @@
                                     {{$location->links()}}
                                 </div>
                                 <div id="map"></div>
-
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
@@ -200,12 +203,15 @@
         <!-- /.content -->
     </div>
 @section('custom_js')
+
+
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
 
     <script>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU" type="text/javascript"></script>
     <!-- /.container-fluid -->
     <script type="text/javascript">
+
         ymaps.ready(init);
 
         function init() {
@@ -252,6 +258,8 @@
             });
             $('.dataTables_length').addClass('bs-select');
         });
+
+
     </script>
 @endsection
 @endsection

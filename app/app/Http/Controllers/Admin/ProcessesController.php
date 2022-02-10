@@ -16,11 +16,11 @@ class ProcessesController extends Controller
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
 
-        $processes = Processes::orderBy('created_at', 'DESC')->paginate(9);
+//        $processes = Processes::orderBy('created_at', 'DESC')->paginate(9);
 
         $Global_param = Gparams::all();
 
-        return view('admin.processes.index', compact('processes',
+        return view('admin.processes.index', compact(
             'notifications', 'notifications_count', 'Global_param'));
     }
 

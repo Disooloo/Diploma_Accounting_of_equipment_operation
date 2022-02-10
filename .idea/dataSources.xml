@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DAEO@localhost" uuid="564a5187-9c88-4a72-9bf3-bcf8ad3d7333">
+    <data-source source="LOCAL" name="daeo@localhost" uuid="653da424-b5df-44d5-b811-b24d35aee38d">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/DAEO</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/daeo</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

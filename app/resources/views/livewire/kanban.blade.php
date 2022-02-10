@@ -91,7 +91,7 @@
                         </div>
 
 
-                        <div style="display: none; width: 95%;" id="addCard" class="fancybox dark-mode">
+                        <div style="display: none; width: 95%;" id="addTeams" class="fancybox dark-mode">
 
 
                             <div class="col-md-12">

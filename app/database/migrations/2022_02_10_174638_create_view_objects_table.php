@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsTable extends Migration
+class CreateViewObjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('view_objects', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('group_id')->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->string("title");
-            $table->integer("sort")->default(999);
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('view_objects');
     }
 }

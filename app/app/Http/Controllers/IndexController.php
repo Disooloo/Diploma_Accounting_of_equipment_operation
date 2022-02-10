@@ -26,7 +26,7 @@ class IndexController extends Controller
     {
 
         $notifications = notification::orderBy('id', 'desc');
-        $notifications_count = notification::all()->count();  
+        $notifications_count = notification::all()->count();
 
 
         return view('admin.index', compact('notifications',
@@ -39,7 +39,7 @@ class IndexController extends Controller
 
         return view('admin.company.index', compact('notifications', 'notifications_count'));
     }
-    public function org()
+    public function organizations()
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
@@ -98,11 +98,17 @@ class IndexController extends Controller
     }
     public function view_object()
     {
-        return view('admin.view_objects.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.view_objects.index', compact('notifications', 'notifications_count'));
     }
     public function type_object()
     {
-        return view('admin.type_objects.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.type_objects.index', compact('notifications', 'notifications_count'));
     }
     public function model_object()
     {
@@ -130,9 +136,9 @@ class IndexController extends Controller
         $notifications_count = notification::all()->count();
         return view('admin.objectMain.index', compact('notifications', 'notifications_count'));
     }
-    public function workTime()
+    public function workTime_update()
     {
-        return view('admin.workTime.index');
+
     }
     public function crm()
     {

@@ -80,6 +80,9 @@
         <!-- Main content -->
         <section class="content">
             <div class="card">
+                <div class="card-header">
+                    <h1>Всего статусов: {{$stats_count}}</h1>
+                </div>
                 <!-- Default box -->
                 <div class="card-body ">
                     @foreach($stats as $stat)
@@ -191,5 +194,6 @@
 {{--            });--}}
 {{--        });--}}
 {{--    </script>--}}
+
 @endsection
 @endsection

@@ -31,7 +31,12 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        $notifications = notification::orderBy('id', 'desc')->paginate(30);
+        $notifications_count = notification::all()->count();
+
+        $teams = Team::orderBy('created_at', 'DESC')->paginate(12);
+        return view('admin.team.create', compact('teams', 'notifications', 'notifications_count'));
+
     }
 
     /**
@@ -42,7 +47,23 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-
+        $teams = new Team();
+        $teams->FirstName = $request->FirstName;
+        $teams->LastName = $request->LastName;
+        $teams->Patronymic = $request->Patronymic;
+        $teams->Post = $request->Post;
+        $teams->Description = $request->Description;
+        $teams->Adress = $request->Adress;
+        $teams->phone = $request->phone;
+        $teams->ServeseNumber = $request->ServeseNumber;
+        $teams->Department = $request->Department;
+        $teams->Company = $request->Company;
+        $teams->Branch = $request->Branch;
+        $teams->Education = $request->Education;
+        $teams->Skill = $request->Skill;
+        $teams->email = $request->email;
+        $teams->save();
+        return redirect('/team');
     }
 
     /**
@@ -55,7 +76,9 @@ class TeamController extends Controller
     {
         $notifications = notification::orderBy('id', 'desc')->paginate(30);
         $notifications_count = notification::all()->count();
-        return view('admin.team.show', compact('team', 'notifications', 'notifications_count'));
+
+        return view('admin.team.show', compact('team', 'notifications',
+            'notifications_count'));
     }
 
     /**

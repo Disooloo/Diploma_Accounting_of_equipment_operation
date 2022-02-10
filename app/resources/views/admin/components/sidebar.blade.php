@@ -5,6 +5,9 @@ $references = [
     "branches" => "Филиалы",
     "location" => "Местоположение",
     "status" => "Статусы",
+    "workTime" => "График работы сотрудников",
+    "organizations" => "Организации",
+    "view_object" => "Виды обьектов",
 ]
 
 ?>
@@ -18,10 +21,12 @@ $references = [
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ \Illuminate\Support\Facades\Auth::user()->img }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ \Illuminate\Support\Facades\Auth::user()->img }}" class="img-circle elevation-2"
+                     alt="User Image">
             </div>
             <div class="info">
-                <a href="{{route('my_profiles_user')}}" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                <a href="{{route('my_profiles_user')}}"
+                   class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -72,9 +77,10 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-chart-bar mr-2"></i>
-                                <p>График работы сотрудников</p>
+                            <a href="{{route('work_time.index')}}"
+                               class="nav-link {{ request()->routeIs('work_time.index') ? 'active' : '' }}">
+                                <i class="fas fa-chart-bar mr-2 "></i>
+                                <p>{{$references['workTime']}}</p>
                             </a>
                         </li>
                     </ul>
@@ -90,46 +96,51 @@ $references = [
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('company.index')}}" class="nav-link  {{ request()->routeIs('company.index') ? 'active' : '' }}">
+                            <a href="{{route('company.index')}}"
+                               class="nav-link  {{ request()->routeIs('company.index') ? 'active' : '' }}">
                                 <i class="far fa-building mr-2"></i>
                                 <p>{{$references['company']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('branches.index')}}" class="nav-link {{ request()->routeIs('branches.index') ? 'active' : '' }}">
+                            <a href="{{route('branches.index')}}"
+                               class="nav-link {{ request()->routeIs('branches.index') ? 'active' : '' }}">
                                 <i class="fas fa-code-branch mr-2"></i>
                                 <p>{{$references['branches']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('location.index')}}" class="nav-link  {{ request()->routeIs('location.index') ? 'active' : '' }}">
+                            <a href="{{route('location.index')}}"
+                               class="nav-link  {{ request()->routeIs('location.index') ? 'active' : '' }}">
                                 <i class="fas fa-search-location mr-2"></i>
                                 <p>{{$references['location']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('status.index')}}" class="nav-link {{ request()->routeIs('status.index') ? 'active' : '' }}">
+                            <a href="{{route('status.index')}}"
+                               class="nav-link {{ request()->routeIs('status.index') ? 'active' : '' }}">
                                 <i class="fas fa-tag mr-2"></i>
                                 <p>{{$references['status']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('team.index') }}"  class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
+                            <a href="{{ route('team.index') }}"
+                               class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}">
                                 <i class="fas fa-users mr-2"></i>
-{{--                                <p>Сотрудники</p>--}}
+                                {{--                                <p>Сотрудники</p>--}}
                                 <p>{{$references['team']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('organizations')}}" class="nav-link {{ request()->routeIs('organizations') ? 'active' : '' }}">
                                 <i class="far fa-building mr-2"></i>
-                                <p>Организации</p>
+                                <p>{{$references['organizations']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('view_object')}}" class="nav-link {{ request()->routeIs('view_object') ? 'active' : '' }}">
                                 <i class="fas fa-object-group mr-2"></i>
-                                <p>Виды обьектов</p>
+                                <p>{{$references['view_object']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -184,7 +195,8 @@ $references = [
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('processes.index')}}" class="nav-link {{ request()->routeIs('processes.index') ? 'active' : '' }}">
+                    <a href="{{route('processes.index')}}"
+                       class="nav-link {{ request()->routeIs('processes.index') ? 'active' : '' }}">
                         <i class="fas fa-file-alt mr-2"></i>
                         <p>
                             Процессы
@@ -200,7 +212,8 @@ $references = [
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('global_settings.index')}}" class="nav-link {{ request()->routeIs('global_settings.index') ? 'active' : '' }}">
+                    <a href="{{route('global_settings.index')}}"
+                       class="nav-link {{ request()->routeIs('global_settings.index') ? 'active' : '' }}">
                         <i class="fas fa-cogs"></i>
                         <p>
                             Глобальные параметры

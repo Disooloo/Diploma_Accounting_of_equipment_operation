@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\NotificationsConstoller;
 use App\Http\Controllers\Admin\ProcessesController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\WorkTimeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,42 +25,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Номеклатура
-
-Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
-Route::get('/8', [App\Http\Controllers\IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
-Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
-Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
-Route::get('/11', [App\Http\Controllers\IndexController::class, 'type_work'])->name('type_work'); // Тип работы
-Route::get('/12', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
-// Главные
-Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
-Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
-Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
-Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
-Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
-
-
-Route::get('/1', [App\Http\Controllers\IndexController::class, 'tesst123123'])->name('tesst123123');
+//
+//Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
+//Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
+//Route::get('/11', [App\Http\Controllers\IndexController::class, 'type_work'])->name('type_work'); // Тип работы
+//Route::get('/12', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
+//// Главные
+//Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
+//Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
+//Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
+//Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
+//
+//
+//Route::get('/1', [App\Http\Controllers\IndexController::class, 'tesst123123'])->name('tesst123123');
+//
 
 
-
-
+//
 Route::resource('status', StatsController::class); // Потом вернуться
-
-Route::get('/21', [App\Http\Controllers\IndexController::class, 'org'])->name('org'); // Организации
-
+//
+//
 Route::get('/my_profiles', [IndexController::class, 'my_profiles'])->name('my_profiles_user');
+//
+//Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
 
+
+Route::resource('work_time', WorkTimeController::class);
+//Route::get('work_time/{work_time}', [IndexController::class, 'workTime_update'])->name('workTime_update');
+
+
+
+
+Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
 
 // Готовое
 Route::resource('team', TeamController::class);
 Route::get('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
 Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
 Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
+Route::get('/organizations', [IndexController::class, 'organizations'])->name('organizations'); // Организации
+Route::get('/view_object', [IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
 
 
 
-Route::get('/crm', [App\Http\Controllers\IndexController::class, 'crm'])->name('crm'); // crm
+Route::get('/crm', [IndexController::class, 'crm'])->name('crm'); // crm delete
+
+
 Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');//processesFile
 Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word');//processesFile
 Route::post('/processesFile/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation');//processesFile/vacation
@@ -82,4 +94,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FStatus;
+use App\Models\Gparams;
+use App\Models\Mons;
 use App\Models\notification;
-use App\Models\Stats;
+use App\Models\Team;
+use App\Models\WorkTime;
 use Illuminate\Http\Request;
 
-class StatsController extends Controller
+class WorkTimeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +19,19 @@ class StatsController extends Controller
      */
     public function index()
     {
-
-        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications = notification::orderBy('id', 'desc')->paginate(30);
         $notifications_count = notification::all()->count();
 
-        $stats = FStatus::orderBy('id', 'desc')->paginate(15);
-        $stats_count = FStatus::all()->count();
+        $wTime = WorkTime::orderBy('created_at', 'DESC')->paginate(15);
 
-        return view('admin.stats.index', compact('notifications',
-            'notifications_count', 'stats', 'stats_count'));
+        $mon = Mons::orderBy('created_at', 'DESC')->paginate(12);
+
+        $team = Team::orderBy('created_at', 'DESC')->paginate(12);
+        $gparams = Gparams::all();
+
+
+        return view('admin.workTime.index', compact('wTime', 'gparams','team', 'mon', 'notifications', 'notifications_count'));
+
     }
 
     /**
@@ -46,15 +52,14 @@ class StatsController extends Controller
      */
     public function store(Request $request)
     {
-        $stats = new FStatus();
+        $wTime = new WorkTime();
 
-        $stats->title = $request->title;
-        $stats->description = $request->description;
+        $wTime->name_team = $request->name_team;
+        $wTime->dop1 = $request->dop1;
+        $wTime->general_manager = $request->general_manager;
+        $wTime->save();
 
-        $stats->save();
-
-        return redirect()->back();
-
+        return redirect('/work_time');
 
     }
 
@@ -75,8 +80,21 @@ class StatsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FStatus $stat)
+    public function edit($id)
     {
+        $notifications = notification::orderBy('id', 'desc')->paginate(30);
+        $notifications_count = notification::all()->count();
+
+        $wTime = WorkTime::orderBy('created_at', 'DESC')->paginate(15);
+
+        $mon = Mons::orderBy('created_at', 'DESC')->paginate(12);
+        $team = Team::orderBy('created_at', 'DESC')->paginate(15);
+        $gparams = Gparams::all();
+
+
+        return view('admin.workTime.update', compact('wTime', 'gparams','team',
+            'mon', 'notifications', 'notifications_count'));
+
     }
 
     /**
@@ -99,10 +117,6 @@ class StatsController extends Controller
      */
     public function destroy($id)
     {
-
-        $stat = FStatus::findOrFail($id);
-        $stat->delete();
-
-        return redirect('/status');
+        //
     }
 }
