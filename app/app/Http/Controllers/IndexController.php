@@ -108,6 +108,7 @@ class IndexController extends Controller
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
 
+
         return view('admin.type_objects.index', compact('notifications', 'notifications_count'));
     }
     public function model_object()

@@ -8,6 +8,7 @@ $references = [
     "workTime" => "График работы сотрудников",
     "organizations" => "Организации",
     "view_object" => "Виды обьектов",
+    "type_object" => "Типы обьектов"
 ]
 
 ?>
@@ -19,18 +20,28 @@ $references = [
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ \Illuminate\Support\Facades\Auth::user()->img }}" class="img-circle elevation-2"
-                     alt="User Image">
+        @if(\Illuminate\Support\Facades\Auth::user())
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->img }}" class="img-circle elevation-2"
+                         alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="{{route('my_profiles_user')}}"
+                       class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                </div>
             </div>
-            <div class="info">
-                <a href="{{route('my_profiles_user')}}"
-                   class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
-            </div>
-        </div>
+        @else
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
-        <!-- Sidebar Menu -->
+                <div class="info">
+                    <a href="{{route('my_profiles_user')}}"
+                       class="d-block">Вы не авторизованны</a>
+                </div>
+            </div>
+        @endif
+
+    <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -132,21 +143,24 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('organizations')}}" class="nav-link {{ request()->routeIs('organizations') ? 'active' : '' }}">
+                            <a href="{{route('organizations')}}"
+                               class="nav-link {{ request()->routeIs('organizations') ? 'active' : '' }}">
                                 <i class="far fa-building mr-2"></i>
                                 <p>{{$references['organizations']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('view_object')}}" class="nav-link {{ request()->routeIs('view_object') ? 'active' : '' }}">
+                            <a href="{{route('view_object')}}"
+                               class="nav-link {{ request()->routeIs('view_object') ? 'active' : '' }}">
                                 <i class="fas fa-object-group mr-2"></i>
                                 <p>{{$references['view_object']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('type_object')}}"
+                               class="nav-link {{ request()->routeIs('type_object') ? 'active' : '' }}">
                                 <i class="fas fa-vector-square mr-2"></i>
-                                <p>Типы обьектов</p>
+                                <p>{{$references['type_object']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">

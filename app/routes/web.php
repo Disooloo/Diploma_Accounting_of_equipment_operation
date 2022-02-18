@@ -56,7 +56,7 @@ Route::resource('work_time', WorkTimeController::class);
 
 
 
-Route::get('/9', [App\Http\Controllers\IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
+Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
 
 // Готовое
 Route::resource('team', TeamController::class);
