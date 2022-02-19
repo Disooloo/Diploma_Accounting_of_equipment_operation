@@ -1,16 +1,16 @@
 <div class="card card-blue mt-3">
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Добавление нового обьекта</h3>
+            <h3 class="card-title">Создание вида работ</h3>
         </div>
         <div class="card-body">
             <!-- title -->
             <div class="form-group">
-                <label>Тип обьекта</label>
+                <label>Наименование</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                                                    <span class="input-group-text"> <i
-                                                            class="fas fa-heading"></i> </span>
+                        <span class="input-group-text"> <i
+                                class="fas fa-heading"></i> </span>
                     </div>
                     <input wire:model="title" type="text" class="form-control">
                 </div>
@@ -23,8 +23,8 @@
                 <label>Описание</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i
-                                                                class="fas fa-file"></i></span>
+                        <span class="input-group-text"><i
+                                class="fas fa-file"></i></span>
                     </div>
                     <textarea wire:model="description" type="text"
                               class="form-control"></textarea>

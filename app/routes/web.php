@@ -28,8 +28,6 @@ use Illuminate\Support\Facades\Route;
 //
 //Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 //Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
-//Route::get('/11', [App\Http\Controllers\IndexController::class, 'type_work'])->name('type_work'); // Тип работы
-//Route::get('/12', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
 //// Главные
 //Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
 //Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
@@ -56,7 +54,7 @@ Route::resource('work_time', WorkTimeController::class);
 
 
 
-Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
+Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
 
 // Готовое
 Route::resource('team', TeamController::class);
@@ -65,6 +63,8 @@ Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->n
 Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
 Route::get('/organizations', [IndexController::class, 'organizations'])->name('organizations'); // Организации
 Route::get('/view_object', [IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
+Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
+Route::get('/type_work', [IndexController::class, 'type_work'])->name('type_work'); // Тип работы
 
 
 

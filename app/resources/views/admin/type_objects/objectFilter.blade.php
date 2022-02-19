@@ -1,27 +1,15 @@
 <div class="card card-primary card-outline">
     <div class="card-body box-profile">
-        <h3 class="profile-username text-center">Фильтр по обьектам</h3>
+        <h3 class="profile-username text-center">Новигация</h3>
 
-        @if($v_obj)
-            <ul class="navigation-nav">
-                <li>
-                    <a href="#"
-                       class="active"
-                    >Все записи</a>
-                </li>
-                @foreach ($v_obj as $category)
-                    <li class="nav-item">
-                        * <a href=""
-                             class="active"
-                        >{{ $category->title }} <sup>{{ $category->count }}</sup></a>
-                    </li>
-                @endforeach
-            </ul>
-
-        @else
-            <span>У вас нет видов обьекта</span><a href="{{route('view_object')}}">Добавить новый
-                вид</a>
-        @endif
+        <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+            <label class="btn btn-secondary active mr-3">
+                <input wire:click="editOn" type="radio" name="options" id="option_a1" autocomplete="off" checked> Создание обьекта
+            </label>
+            <label class="btn btn-secondary">
+                <input wire:click="editoff" type="radio" name="options" id="option_a2" autocomplete="off"> Привязка к обьекту
+            </label>
+        </div>
 
     </div><!-- /.card-body -->
 </div>

@@ -24,8 +24,7 @@ class CreateGparamsTable extends Migration
             $table->string('company_KPP');
             $table->string('company_chet');
             $table->string('company_bink');
-            $table->date('getting_started');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('dop1')->nullable();
             $table->string('dop2')->nullable();
             $table->string('link')->nullable();

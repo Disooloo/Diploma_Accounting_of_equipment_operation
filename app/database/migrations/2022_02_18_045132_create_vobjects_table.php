@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeObjectViewsTable extends Migration
+class CreateVobjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,15 @@ class CreateTypeObjectViewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_object_views', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('vobjects', function (Blueprint $table) { //type_object_views
+            $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('model');
+            $table->string('model')->nullable();
             $table->string('img')->nullable();
             $table->string('team_title')->default('Свободно');
 
-            $table->foreignId('type_object_id')->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            //$table->foreignId('type_object_id')->constrained()->onDelete('cascade');
-//            $table->foreignId('type_object_id')->constrained();
+            $table->foreignId('tobject_id')->constrained();
 
             $table->timestamps();
         });
@@ -39,6 +34,6 @@ class CreateTypeObjectViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_object_views');
+        Schema::dropIfExists('vobjects');
     }
 }

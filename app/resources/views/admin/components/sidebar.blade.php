@@ -8,7 +8,9 @@ $references = [
     "workTime" => "График работы сотрудников",
     "organizations" => "Организации",
     "view_object" => "Виды обьектов",
-    "type_object" => "Типы обьектов"
+    "type_object" => "Типы обьектов",
+    "type_work" => "Типы работ",
+    'admins' => "Пользователи",
 ]
 
 ?>
@@ -170,15 +172,15 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('type_work')}}" class="nav-link {{ request()->routeIs('type_work') ? 'active' : '' }}">
                                 <i class="fas fa-laptop-house mr-2"></i>
-                                <p>Типы работ</p>
+                                <p>{{$references['type_work']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('full_user_adm')}}" class="nav-link {{ request()->routeIs('full_user_adm') ? 'active' : '' }}">
                                 <i class="fas fa-user mr-2"></i>
-                                <p>Пользователи</p>
+                                <p>{{$references['admins']}}</p>
                             </a>
                         </li>
                     </ul>

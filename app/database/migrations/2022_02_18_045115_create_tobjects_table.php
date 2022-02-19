@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeObjectsTable extends Migration
+class CreateTobjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateTypeObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_objects', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('tobjects', function (Blueprint $table) { //type_object
+            $table->id();
             $table->string('title');
             $table->string('description');
-
-//            $table->integer('typeViews_id');
-//            $table->foreign('typeViews_id')->references('id')->on('type_object_views');
-            $table->bigInteger('typeViews_id')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateTypeObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_objects');
+        Schema::dropIfExists('tobjects');
     }
 }

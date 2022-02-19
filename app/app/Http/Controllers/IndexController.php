@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Gparams;
 use App\Models\notification;
 use App\Models\Team;
+use App\Models\tobject;
+use App\Models\vobject;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -22,6 +24,15 @@ class IndexController extends Controller
         return view('admin.index', compact('notifications', 'notifications_count',
             'team_count', 'teams'));
     }
+//    public function top()
+//    {
+//        $notifications = notification::orderBy('id', 'desc');
+//        $notifications_count = notification::all()->count();
+//
+//
+//        return view('admin.type_objects.index', compact('notifications',
+//            'notifications_count'));
+//    }
     public function my_profiles()
     {
 
@@ -103,13 +114,28 @@ class IndexController extends Controller
 
         return view('admin.view_objects.index', compact('notifications', 'notifications_count'));
     }
-    public function type_object()
+    public function type_object($CatId = 0)
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
 
+        $t_obj = tobject::latest();
+        $t_obj_view = vobject::get();
 
-        return view('admin.type_objects.index', compact('notifications', 'notifications_count'));
+
+//        if ($CatId) {
+//            $t_obj->where('cat_id', $CatId);
+//        }
+
+        return view('admin.type_objects.index',[
+            't_obj' => $t_obj->get(),
+            'v_obj' => $t_obj_view,
+            'CatId' => $CatId,
+
+            'notifications' => $notifications,
+            'notifications_count' => $notifications_count
+        ]);
+
     }
     public function model_object()
     {
@@ -117,11 +143,16 @@ class IndexController extends Controller
     }
     public function type_work()
     {
-        return view('admin.type_work.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.type_work.index', compact('notifications', 'notifications_count'));
     }
     public function full_user_adm()
     {
-        return view('admin.full_user_adm.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.full_user_adm.index', compact('notifications', 'notifications_count'));
     }
     public function history()
     {
@@ -153,12 +184,16 @@ class IndexController extends Controller
     }
     public function global_settings()
     {
+
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
 
         $params = Gparams::orderBy('created_at', 'DESC')->paginate(1);
 
-        return view('admin.global_set.index', compact('params', 'notifications', 'notifications_count'));
+
+
+        return view('admin.global_set.index', compact('params', 'notifications',
+            'notifications_count'));
     }
 
     public function notification_full()
