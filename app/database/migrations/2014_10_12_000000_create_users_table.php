@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('img')->default('https://sin5.org/images/faces/1.jpg');
+            $table->tinyInteger('is_admin')->default(0);
+            $table->string('dop1_str')->nullable();
+            $table->string('dop2_str')->nullable();
+            $table->boolean('dop1_boolean')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -41,7 +41,7 @@
     <div class="card-footer">
         <button wire:click="update" type="submit" class="btn btn-info">Редактировать
         </button>
-        <button wire:click="add_back" type="submit" class="btn btn-warning">Перейти к
+        <button wire:click="add_back" type="submit" class="btn btn-warning"> к
             добавлению
         </button>
     </div>

@@ -25,9 +25,6 @@ class TypeWork extends Component
                 'works' => TypeWorks::where('title', 'LIKE', $term)->latest()->paginate(8),
                 'works_count' => $works_count
             ]);
-
-
-
     }
 
     public function resetInput()
@@ -59,7 +56,6 @@ class TypeWork extends Component
         $this->createData = false;
 
     }
-
 
     public function update()
     {

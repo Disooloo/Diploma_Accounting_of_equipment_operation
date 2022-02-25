@@ -12,7 +12,7 @@
                             @include('admin.type_work.create')
                         @else
                             <h3 class="profile-username text-center" id="addpost">Редактирование записи</h3>
-                            @include('admin.type_objects.editT')
+                            @include('admin.type_work.edit')
                         @endif
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->

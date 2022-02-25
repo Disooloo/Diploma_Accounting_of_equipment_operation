@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gparams;
+use App\Models\ModelObject;
 use App\Models\notification;
 use App\Models\Team;
 use App\Models\tobject;
@@ -12,6 +13,14 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+
+
+    public function test()
+    {
+
+        return view('admin.test');
+    }
+
     public function index()
     {
 
@@ -24,15 +33,32 @@ class IndexController extends Controller
         return view('admin.index', compact('notifications', 'notifications_count',
             'team_count', 'teams'));
     }
-//    public function top()
-//    {
-//        $notifications = notification::orderBy('id', 'desc');
-//        $notifications_count = notification::all()->count();
-//
-//
-//        return view('admin.type_objects.index', compact('notifications',
-//            'notifications_count'));
-//    }
+
+
+    public function mode_object()
+    {
+        $notifications = notification::orderBy('id', 'desc');
+        $notifications_count = notification::all()->count();
+
+        return view('admin.model_object.index', compact('notifications',
+        'notifications_count'));
+    }
+
+    public function mode_object_create(Request $request)
+    {
+        $mObject = new ModelObject();
+        $mObject->title_view = $request->title_view;
+        $mObject->title_type = $request->title_type;
+        $mObject->title_model = $request->title_model;
+        $mObject->title_description = $request->title_description;
+        $mObject->object_img = $request->object_img;
+        $mObject->title_teams = $request->title_teams;
+
+        $mObject->save();
+        return redirect('/model-object');
+    }
+
+
     public function my_profiles()
     {
 
@@ -103,10 +129,10 @@ class IndexController extends Controller
 
         return view('admin.location.index', compact('notifications', 'notifications_count'));
     }
-    public function stats()
-    {
-        return view('admin.stats.index');
-    }
+//    public function stats()
+//    {
+//        return view('admin.stats.index');
+//    }
     public function view_object()
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
@@ -123,10 +149,6 @@ class IndexController extends Controller
         $t_obj_view = vobject::get();
 
 
-//        if ($CatId) {
-//            $t_obj->where('cat_id', $CatId);
-//        }
-
         return view('admin.type_objects.index',[
             't_obj' => $t_obj->get(),
             'v_obj' => $t_obj_view,
@@ -137,10 +159,10 @@ class IndexController extends Controller
         ]);
 
     }
-    public function model_object()
-    {
-        return view('admin.model_object.index');
-    }
+
+
+
+
     public function type_work()
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
@@ -168,16 +190,8 @@ class IndexController extends Controller
         $notifications_count = notification::all()->count();
         return view('admin.objectMain.index', compact('notifications', 'notifications_count'));
     }
-    public function workTime_update()
-    {
 
-    }
-    public function crm()
-    {
-        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
-        $notifications_count = notification::all()->count();
-        return view('admin.crm.index', compact('notifications', 'notifications_count'));
-    }
+
     public function movements()
     {
         return view('admin.movements.index');
@@ -210,15 +224,16 @@ class IndexController extends Controller
         return redirect()->back();
     }
 
-    public function tesst123123()
+
+    public function NotFind()
     {
-        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
-        $notifications_count = notification::all()->count();
-
-        return view('test', compact('notifications', 'notifications_count'));
-
+        return view('admin.404');
     }
 
+    public function BlockedLogin()
+    {
+        return view('admin.403');
+    }
 
 
 

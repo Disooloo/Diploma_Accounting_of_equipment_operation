@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\BranchesConstoller;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ExportController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\WorkTimeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,15 +27,12 @@ use Illuminate\Support\Facades\Route;
 // Номеклатура
 //
 //Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
-//Route::get('/10', [App\Http\Controllers\IndexController::class, 'model_object'])->name('model_object'); // Модель обьектов
 //// Главные
 //Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
 //Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
-//Route::get('/15', [App\Http\Controllers\IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
 //Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 //
 //
-//Route::get('/1', [App\Http\Controllers\IndexController::class, 'tesst123123'])->name('tesst123123');
 //
 
 
@@ -47,14 +44,36 @@ Route::get('/my_profiles', [IndexController::class, 'my_profiles'])->name('my_pr
 //
 //Route::get('/16', [App\Http\Controllers\IndexController::class, 'workTime'])->name('workTime'); // График работы
 
-
 Route::resource('work_time', WorkTimeController::class);
 //Route::get('work_time/{work_time}', [IndexController::class, 'workTime_update'])->name('workTime_update');
 
 
+Route::get('/404', [IndexController::class, 'NotFind'])->name('NotFind');
+Route::get('/403', [IndexController::class, 'BlockedLogin'])->name('BlockedLogin');
 
 
-Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
+
+Route::group(['middleware' => 'auth'], function () {
+    // code
+    Route::resource('team', TeamController::class);
+
+
+    Route::group(['middleware' => ['is_admin']], function () {
+        // code
+    });
+
+});
+
+
+
+Route::group(['middleware' => 'is_admin'], function () {
+});
+
+
+
+
+Route::get('/15', [IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
+
 
 // Готовое
 Route::resource('team', TeamController::class);
@@ -65,10 +84,14 @@ Route::get('/organizations', [IndexController::class, 'organizations'])->name('o
 Route::get('/view_object', [IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
 Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
 Route::get('/type_work', [IndexController::class, 'type_work'])->name('type_work'); // Тип работы
+Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
+
+Route::group(['prefix'=>'model-object'], function(){
+    Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
+    Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
+});
 
 
-
-Route::get('/crm', [IndexController::class, 'crm'])->name('crm'); // crm delete
 
 
 Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');//processesFile
@@ -84,14 +107,16 @@ Route::resource('location', LocationController::class);
 
 
 //Export
-Route::get('export/location', [ExportController::class, 'export_location'])->name('export_location');
-//
+Route::group(['prefix'=>'export'], function(){
+    Route::get('/location', [ExportController::class, 'export_location'])->name('export_location');
+    Route::get('/model-object', [ExportController::class, 'model_object'])->name('export_model_object');
+});
 
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');

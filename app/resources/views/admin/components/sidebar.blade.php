@@ -11,6 +11,7 @@ $references = [
     "type_object" => "Типы обьектов",
     "type_work" => "Типы работ",
     'admins' => "Пользователи",
+    'mObject' => "Модели обьектов",
 ]
 
 ?>
@@ -166,9 +167,9 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('model-object')}}" class="nav-link {{ request()->routeIs('model-object') ? 'active' : '' }}">
                                 <i class="fab fa-buromobelexperte mr-2"></i>
-                                <p>Модели обьектов</p>
+                                <p>{{$references['mObject']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -184,14 +185,6 @@ $references = [
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="fas fa-user mr-2"></i>
-                        <p>
-                            Профиль
-                        </p>
-                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="" class="nav-link">
@@ -220,14 +213,6 @@ $references = [
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('crm')}}" class="nav-link {{ request()->routeIs('crm') ? 'active' : '' }}">
-                        <i class="fas fa-file-alt mr-2"></i>
-                        <p>
-                            СRM
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{route('global_settings.index')}}"
                        class="nav-link {{ request()->routeIs('global_settings.index') ? 'active' : '' }}">
                         <i class="fas fa-cogs"></i>
@@ -242,3 +227,5 @@ $references = [
     </div>
     <!-- /.sidebar -->
 </aside>
+
+
