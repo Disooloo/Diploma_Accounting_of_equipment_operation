@@ -20,7 +20,7 @@ class TeamController extends Controller
         $notifications = notification::orderBy('id', 'desc')->paginate(30);
         $notifications_count = notification::all()->count();
 
-        $teams = Team::orderBy('created_at', 'DESC')->paginate(12);
+        $teams = Team::orderBy('created_at', 'DESC')->paginate(15);
         return view('admin.team.index', compact('teams', 'notifications', 'notifications_count'));
     }
 
@@ -36,7 +36,6 @@ class TeamController extends Controller
 
         $teams = Team::orderBy('created_at', 'DESC')->paginate(12);
         return view('admin.team.create', compact('teams', 'notifications', 'notifications_count'));
-
     }
 
     /**
@@ -77,8 +76,11 @@ class TeamController extends Controller
         $notifications = notification::orderBy('id', 'desc')->paginate(30);
         $notifications_count = notification::all()->count();
 
-        return view('admin.team.show', compact('team', 'notifications',
-            'notifications_count'));
+        return view('admin.team.show', compact(
+            'team',
+            'notifications',
+            'notifications_count'
+        ));
     }
 
     /**
@@ -89,7 +91,6 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-
     }
 
     /**
@@ -107,7 +108,6 @@ class TeamController extends Controller
         $team->update();
 
         return view('admin.team.show', compact('team'));
-
     }
     /**
      * Remove the specified resource from storage.
@@ -119,6 +119,4 @@ class TeamController extends Controller
     {
         //
     }
-
-
 }

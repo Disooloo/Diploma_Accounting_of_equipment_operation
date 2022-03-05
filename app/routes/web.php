@@ -61,15 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['is_admin']], function () {
         // code
     });
-
 });
-
-
-
-Route::group(['middleware' => 'is_admin'], function () {
-});
-
-
 
 
 Route::get('/15', [IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
@@ -86,7 +78,7 @@ Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_
 Route::get('/type_work', [IndexController::class, 'type_work'])->name('type_work'); // Тип работы
 Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
 
-Route::group(['prefix'=>'model-object'], function(){
+Route::group(['prefix' => 'model-object'], function () {
     Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
     Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
 });
@@ -94,20 +86,20 @@ Route::group(['prefix'=>'model-object'], function(){
 
 
 
-Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');//processesFile
-Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word');//processesFile
-Route::post('/processesFile/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation');//processesFile/vacation
+Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index'); //processesFile
+Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word'); //processesFile
+Route::post('/processesFile/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation'); //processesFile/vacation
 
 Route::resource('/company', CompanyController::class);
-Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index');//global_settings
-Route::resource('/notification', NotificationsConstoller::class);//notification_full
+Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index'); //global_settings
+Route::resource('/notification', NotificationsConstoller::class); //notification_full
 Route::resource('branches', BranchesConstoller::class);
 Route::resource('location', LocationController::class);
 
 
 
 //Export
-Route::group(['prefix'=>'export'], function(){
+Route::group(['prefix' => 'export'], function () {
     Route::get('/location', [ExportController::class, 'export_location'])->name('export_location');
     Route::get('/model-object', [ExportController::class, 'model_object'])->name('export_model_object');
 });
