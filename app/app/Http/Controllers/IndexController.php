@@ -47,12 +47,40 @@ class IndexController extends Controller
     public function mode_object_create(Request $request)
     {
         $mObject = new ModelObject();
+
         $mObject->title_view = $request->title_view;
         $mObject->title_type = $request->title_type;
-        $mObject->title_model = $request->title_model;
-        $mObject->title_description = $request->title_description;
-        $mObject->object_img = $request->object_img;
         $mObject->title_teams = $request->title_teams;
+        $mObject->title_model = $request->title_model;
+        $mObject->object_img = $request->object_img;
+        $mObject->title_description = $request->title_description;
+        $mObject->title_company = $request->title_company;
+        $mObject->title_branch = $request->title_branch;
+        $mObject->title_status = $request->title_status;
+        $mObject->number_system = $request->number_system;
+        $mObject->number_individual = $request->number_individual;
+        $mObject->number_individual_bix = $request->number_individual_bix;
+        $mObject->number_parties = $request->number_parties;
+        $mObject->title_spawn = $request->title_spawn;
+        $mObject->code_product = $request->code_product;
+        $mObject->code_activation = $request->code_activation;
+        $mObject->number_Quantity = $request->number_Quantity;
+        $mObject->money_cost = $request->money_cost;
+        $mObject->money_sum = $request->money_sum;
+        $mObject->title_seller = $request->title_seller;
+        $mObject->service_organization = $request->service_organization;
+        $mObject->data_inventory = $request->data_inventory;
+        $mObject->inventory_boolean = $request->inventory_boolean;
+        $mObject->data_inventory = $request->data_inventory;
+        $mObject->warranty_do = $request->warranty_do;
+        $mObject->license_do = $request->license_do;
+        $mObject->title_wrote = $request->title_wrote;
+        $mObject->id_order = $request->id_order;
+        $mObject->title_domain = $request->title_domain;
+        $mObject->system_name = $request->system_name;
+        $mObject->ip_address = $request->ip_address;
+        $mObject->MAC_address = $request->MAC_address;
+        $mObject->title_note = $request->title_note;
 
         $mObject->save();
         return redirect('/model-object');
@@ -91,7 +119,7 @@ class IndexController extends Controller
         $team->dop1_id = $request->dop1_id;
         $team->update();
 
-        return view('admin.team.show', compact('team'));
+        return view('admin.team.show', compact('team', 'notifications_count', 'notifications'));
     }
     public function teamSettings(Request $request, Team $team)
     {
@@ -120,7 +148,9 @@ class IndexController extends Controller
 
     public function news()
     {
-        return view('admin.news.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.news.index', compact('notifications', 'notifications_count'));
     }
     public function local()
     {
@@ -178,7 +208,10 @@ class IndexController extends Controller
     }
     public function history()
     {
-        return view('admin.history.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+
+        return view('admin.history.index', compact('notifications', 'notifications_count '));
     }
     public function repair()
     {

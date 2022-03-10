@@ -2,7 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Branches;
+use App\Models\Company;
+use App\Models\FStatus;
+use App\Models\Location;
 use App\Models\ModelObject;
+use App\Models\Oganizations;
 use App\Models\Team;
 use App\Models\tobject;
 use App\Models\View_object;
@@ -12,9 +17,13 @@ use Livewire\Component;
 class ModelLive extends Component
 {
 
-    public $views, $type, $model, $title, $description, $img, $teams;
+    public $views, $type, $model, $title, $description, $img, $teams, $number_Quantity,
+        $money_cost, $money_sum, $inventory_boolean_true;
 
     public $storeOn = true;
+    public $nextBtn = false;
+    public $nextBtn1 = false;
+
 
     protected $rules = [
         'views' => 'required',
@@ -45,6 +54,16 @@ class ModelLive extends Component
         $this->storeOn = true;
     }
 
+    public function bntNext()
+    {
+        $this->nextBtn = true;
+    }
+
+    public function bntNext1()
+    {
+        $this->nextBtn1 = true;
+    }
+
     public function addCard()
     {
         $this->storeOn = false;
@@ -61,6 +80,16 @@ class ModelLive extends Component
         $model->delete();
     }
 
+    public function inventory_boolean1()
+    {
+        $this->inventory_boolean_true = 1;
+    }
+
+    public function inventory_boolean0()
+    {
+        $this->inventory_boolean_true = 0;
+    }
+
 
     public function render()
     {
@@ -68,8 +97,13 @@ class ModelLive extends Component
         $typess = tobject::all();
         $teamss = Team::all();
         $models = ModelObject::latest()->paginate(10);
+        $company = Company::all();
+        $branch = Branches::all();
+        $status = FStatus::all();
+        $t_spawn = Location::all();
+        $oganizations = Oganizations::all();
 
         return view('livewire.model-live', compact('models',
-            'viewss', 'typess', 'teamss'));
+            'viewss', 'typess', 'teamss', 'company', 'branch', 'status', 't_spawn', 'oganizations'));
     }
 }

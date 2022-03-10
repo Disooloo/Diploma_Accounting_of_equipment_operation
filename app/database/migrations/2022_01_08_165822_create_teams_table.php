@@ -29,21 +29,16 @@ class CreateTeamsTable extends Migration
             $table->string('Branch');
             $table->string('Education');
             $table->string('Skill');
-            $table->string('Password')->default("12345");
+//            $table->string('Password')->default("12345");
             $table->string('PensionInsurant')->default("asdsdadas");
             $table->string('MedicalPolicy')->default("asdsdadas");
             $table->date('Dismissed')->default('11.01.2022');;
             $table->bigInteger('Dismissed_team')->default(0);
             $table->string('email');
-            $table->string('role')->default('Сотрудник');
-            $table->bigInteger('Pс_id')->default("0");
-            $table->bigInteger('monitor_id')->default("0");
-            $table->bigInteger('mebel_id')->default('0');
-            $table->bigInteger('dop1_id')->default(false);
-            $table->bigInteger('dop2_id')->default(false);
-            $table->bigInteger('dop3_id')->default(false);
-            $table->bigInteger('passed')->default(false);
-
+//            $table->string('role')->default('Сотрудник');
+            $table->boolean('dop1_id')->default(0);
+            $table->boolean('dop2_id')->default(0);
+            $table->boolean('passed')->default(0);
             $table->timestamps();
         });
     }

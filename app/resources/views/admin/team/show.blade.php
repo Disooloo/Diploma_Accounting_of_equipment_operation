@@ -253,13 +253,8 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                        <!-- END timeline item -->
-                                            <!-- timeline item -->
-
-                                            <!-- END timeline item -->
 
                                             <!-- timeline time label -->
-
                                             @if($team['Dismissed_team'] == 1)
 
                                                 <div class="time-label">
@@ -322,6 +317,7 @@
                                             @endif
                                         </div>
                                     </div>
+
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal" action="{{route('teamSettings', $team->id)}}">
@@ -426,7 +422,7 @@
                 Donec hendrerit efficitur ex vitae euismod. Maecenas ut leo vitae ipsum dictum <br>
                 cursus vel vitae nulla.
             </p>
-            <form method="post" action="{{route('dop1team', $team->id)}}">
+            <form method="post" action="{{route('dop1team', $team['id'])}}">
                 @csrf
                 @method('POST')
                 <div class="form-group">
@@ -444,7 +440,6 @@
                         <input type=hidden value="1" name="dop1_id"/>
                         <input type=submit id=submit value=Отправить class="btn btn-info"/>
                     </div>
-
                 </div>
             </form>
         </div>

@@ -161,34 +161,39 @@
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form-group -->
+
                                 <!-- Company -->
                                 <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i
-                                                                class="fas fa-building"></i></span>
-                                        </div>
-                                        <input name="Company" type="text"
-                                               class="form-control"
-                                               placeholder="Компания">
-                                    </div>
-                                    <!-- /.input group -->
+                                    <select name="Company"
+                                            class="form-control select2bs4 select2-hidden-accessible"
+                                            style="width: 100%;" data-select2-id="17" tabindex="-1"
+                                            aria-hidden="true">
+                                        <option value="Компания не выбрана">Компания не выбрана</option>
+                                        @foreach($company as $comp)
+                                            <option
+                                                value="{{$comp->Company_name}}">{{$comp->Company_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <!-- /.form-group -->
+
+
                                 <!-- Branch -->
                                 <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i
-                                                                class="fas fa-code-branch"></i></span>
-                                        </div>
-                                        <input name="Branch" type="text"
-                                               class="form-control"
-                                               placeholder="Филиал">
-                                    </div>
-                                    <!-- /.input group -->
+                                    <select name="Branch"
+                                            class="form-control select2bs4 select2-hidden-accessible"
+                                            style="width: 100%;" data-select2-id="17" tabindex="-1"
+                                            aria-hidden="true">
+                                        <option value="Филиал не выбрана">Филиал не выбрана</option>
+                                        @foreach($branch as $bran)
+                                            <option
+                                                value="{{$bran->Branches_name}}">{{$bran->Branches_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <!-- /.form-group -->
+
+
                                 <!-- Education -->
                                 <div class="form-group">
                                     <div class="input-group">

@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 //
 //Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 //// Главные
-//Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
+Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
 //Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
 //Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 //
@@ -48,10 +48,6 @@ Route::resource('work_time', WorkTimeController::class);
 //Route::get('work_time/{work_time}', [IndexController::class, 'workTime_update'])->name('workTime_update');
 
 
-Route::get('/404', [IndexController::class, 'NotFind'])->name('NotFind');
-Route::get('/403', [IndexController::class, 'BlockedLogin'])->name('BlockedLogin');
-
-
 
 Route::group(['middleware' => 'auth'], function () {
     // code
@@ -66,12 +62,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/15', [IndexController::class, 'objectMain'])->name('objectMain'); // Обьекты
 
-
 // Готовое
-Route::resource('team', TeamController::class);
-Route::get('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
-Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
-Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
+
+Route::group(['prefix' => ''], function (){
+    Route::resource('/', TeamController::class);
+    Route::post('/team/dop1/{team}', [IndexController::class, 'dop1team'])->name('dop1team');
+    Route::get('/team/settings/{team}', [IndexController::class, 'teamSettings'])->name('teamSettings');
+    Route::get('/team/team_test/{team}', [IndexController::class, 'team_test'])->name('team_test');
+});
+
 Route::get('/organizations', [IndexController::class, 'organizations'])->name('organizations'); // Организации
 Route::get('/view_object', [IndexController::class, 'view_object'])->name('view_object'); // Виды обьектов
 Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
@@ -82,7 +81,6 @@ Route::group(['prefix' => 'model-object'], function () {
     Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
     Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
 });
-
 
 
 
@@ -103,6 +101,12 @@ Route::group(['prefix' => 'export'], function () {
     Route::get('/location', [ExportController::class, 'export_location'])->name('export_location');
     Route::get('/model-object', [ExportController::class, 'model_object'])->name('export_model_object');
 });
+
+
+//errors
+Route::get('/404', [IndexController::class, 'NotFind'])->name('NotFind');
+Route::get('/403', [IndexController::class, 'BlockedLogin'])->name('BlockedLogin');
+
 
 
 Route::get('/login', function () {

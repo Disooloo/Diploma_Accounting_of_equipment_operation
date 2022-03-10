@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branches;
+use App\Models\Company;
 use App\Models\notification;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -35,7 +37,12 @@ class TeamController extends Controller
         $notifications_count = notification::all()->count();
 
         $teams = Team::orderBy('created_at', 'DESC')->paginate(12);
-        return view('admin.team.create', compact('teams', 'notifications', 'notifications_count'));
+        $company = Company::all();
+        $branch = Branches::all();
+
+
+        return view('admin.team.create', compact('teams', 'notifications',
+            'notifications_count', 'company', 'branch'));
     }
 
     /**
@@ -102,12 +109,16 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+        $notifications = notification::orderBy('id', 'desc')->paginate(30);
+        $notifications_count = notification::all()->count();
+
         $team->Dismissed_team = $request->Dismissed_team;
         $team->Dismissed = $request->Dismissed;
 
         $team->update();
 
-        return view('admin.team.show', compact('team'));
+        return view('admin.team.show', compact('team', 'notifications',
+            'notifications_count'));
     }
     /**
      * Remove the specified resource from storage.

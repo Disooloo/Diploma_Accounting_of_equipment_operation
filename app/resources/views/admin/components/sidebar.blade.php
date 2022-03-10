@@ -1,5 +1,6 @@
 <?
 $references = [
+    "home" => "Рабочая область",
     "team" => "Сотрудники",
     "company" => "Компании",
     "branches" => "Филиалы",
@@ -11,7 +12,7 @@ $references = [
     "type_object" => "Типы обьектов",
     "type_work" => "Типы работ",
     'admins' => "Пользователи",
-    'mObject' => "Модели обьектов",
+    'mObject' => "Обьекты",
 ]
 
 ?>
@@ -59,17 +60,16 @@ $references = [
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{route('home')}}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                                 {{-- <i class="far home nav-icon mr-2"></i> --}}
                                 <i class="fas fa-home mr-2"></i>
-                                <p>Рабочая область</p>
+                                <p>{{$references['home']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('model-object')}}" class="nav-link {{ request()->routeIs('model-object') ? 'active' : '' }}">
                                 <i class="fas fa-desktop mr-2"></i>
-                                {{-- <i class="far fa-circle nav-icon"></i> --}}
-                                <p>Объекты</p>
+                                <p>{{$references['mObject']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -166,12 +166,7 @@ $references = [
                                 <p>{{$references['type_object']}}</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('model-object')}}" class="nav-link {{ request()->routeIs('model-object') ? 'active' : '' }}">
-                                <i class="fab fa-buromobelexperte mr-2"></i>
-                                <p>{{$references['mObject']}}</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="{{route('type_work')}}" class="nav-link {{ request()->routeIs('type_work') ? 'active' : '' }}">
                                 <i class="fas fa-laptop-house mr-2"></i>
