@@ -567,8 +567,10 @@
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque in ipsam nihil. Aspernatur
-                        deleniti distinctio excepturi labore voluptatem. A, adipisci!</h1>
+                    <p>Пример</p>
+                    <p>Программа, мебель, оборудование и тд. Добавить <a href="{{route('view_object')}}">вид обьекта</a>
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -576,11 +578,71 @@
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
-                    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque in ipsam nihil. Aspernatur
-                        deleniti distinctio excepturi labore voluptatem. A, adipisci!</h1>
+                    <p>Пример</p>
+                    <p>Ноутбук, принтер, exel и тд. Добавить <a href="{{route('type_object')}}">тип модели</a></p>
                 </div>
             </div>
         </div>
+
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Сотрудник который будет ответственный за обьект</p>
+                    <p>Если нет нужного. Добавить <a href="{{route('team.index')}}">нового отрудника</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Тут нужно прописать название самой модели обьекта. Напиример</p>
+                    <p>Если это оборудование - Asus, Acer, Apple, Nokia и тд. Если ПО, пишем версию v1, v1.22.2 </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Компания в которой находится данный обьект</p>
+                    <p>Если нет нужного. Добавить <a href="{{route('company.index')}}">новую компанию</a></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Более точное нахождение</p>
+                    <p>Если нет нужного. Добавить <a href="{{route('location.index')}}">новое место</a></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Поставщик</p>
+                    <p>Если нет нужного. Добавить <a href="{{route('location.index')}}">нового поставщика</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cardHis mt-5 " style="margin-top: 150px;">
+            <div class="card-header card card-primary card-outline ">
+                <div class="card-body">
+                    <p>Сервисная организация</p>
+                    <p>Если нет нужного. Добавить <a href="{{route('location.index')}}">новую сервисная организацию</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </div>
