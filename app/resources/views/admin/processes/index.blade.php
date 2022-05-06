@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        <div class="callout callout-info " .>
+        <div class="callout callout-info ">
             <h5><i class="fas fa-info"></i> Подсказка:</h5>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eum incidunt iste itaque maiores officia qui
             quibusdam quis rerum sapiente!

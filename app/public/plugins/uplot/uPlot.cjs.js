@@ -1193,7 +1193,8 @@ const xAxisOpts = {
 	labelGap: 0,
 	labelSize: 30,
 	labelFont,
-	side: 2,
+
+    side: 2,
 //	class: "x-vals",
 //	incrs: timeIncrs,
 //	values: timeVals,

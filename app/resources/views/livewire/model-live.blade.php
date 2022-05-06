@@ -64,15 +64,32 @@
                         @foreach($models as $model)
                             <tr class="odd">
                                 <td>
-                                    <button wire:click="edit({{$model->id}})" class="btn btn-info mr-3"><i
-                                            class="fas fa-pen"></i></button>
-                                    <button wire:click="edit({{$model->id}})" class="btn btn-warning mr-3"><i
-                                            class="fas fa-hammer"></i>
-                                        <button wire:click="edit({{$model->id}})" class="btn btn-secondary mr-3"><i
-                                                class="fas fa-id-card"></i>
-                                        </button>
-                                        <button wire:click="remove({{$model->id}})" class="btn btn-danger"><i
-                                                class="fas fa-trash-alt"></i></button>
+                                    <div class="col-md-4">
+                                        <div class="col-md-2">
+                                            <button wire:click="edit({{$model->id}})" class="btn btn-info mr-3"><i
+                                                    class="fas fa-pen"></i>
+                                            </button>
+
+                                            <button wire:click="edit({{$model->id}})" class="btn btn-warning mr-3"><i
+                                                    class="fas fa-hammer"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <form target="_myFrame"
+                                                  action="{{route('processesFile.Cardinal')}}" method="post">
+                                                @csrf
+                                                @include('admin.model_object.Cardinal')
+
+                                                <button type="submit"  style="width: 106px; margin-top: 5px; margin-bottom: 5px;" class="btn btn-secondary mr-3"><i
+                                                        class="fas fa-id-card"></i>
+                                                </button>
+                                            </form>
+
+                                            <button style="width: 106px;" wire:click="remove({{$model->id}})" class="btn btn-danger"><i
+                                                    class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
                                 </td>
                                 <td>{{$model->id}}</td>

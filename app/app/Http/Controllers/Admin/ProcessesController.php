@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gparams;
+use App\Models\ModelObject;
 use App\Models\notification;
 use App\Models\Processes;
 use Illuminate\Http\Request;
@@ -134,5 +135,83 @@ class ProcessesController extends Controller
         unlink($outputFile);
 
 
+    }
+
+
+    public function Cardinal() // карточка моделей
+    {
+        $document = new TemplateProcessor('./processesFile/CardItem.docx');
+
+
+        $outputFile = 'CardItem.docx';
+
+        $title_type = $_POST['title_type'];
+        $title_model = $_POST['title_model'];
+        $id = $_POST['id'];
+        $number_system = $_POST['number_system'];
+        $number_individual = $_POST['number_individual'];
+        $number_individual_bix = $_POST['number_individual_bix'];
+        $number_parties = $_POST['number_parties'];
+        $code_product = $_POST['code_product'];
+        $code_activation = $_POST['code_activation'];
+        $money_sum = $_POST['money_sum'];
+        $number_Quantity = $_POST['number_Quantity'];
+        $money_cost = $_POST['money_cost'];
+        $title_view = $_POST['title_view'];
+        $title_company  = $_POST['title_company'];
+        $title_branch  = $_POST['title_branch'];
+        $title_status  = $_POST['title_status'];
+        $title_teams  = $_POST['title_teams'];
+        $title_description  = $_POST['title_description'];
+        $title_seller   = $_POST['title_seller'];
+        $service_organization   = $_POST['service_organization'];
+        $title_note = $_POST['title_note'];
+        $data_inventory = $_POST['data_inventory'];
+        $warranty_do = $_POST['warranty_do'];
+//        $data_today = date('Y-m-d');
+        $data_today = date('d.m.Y');
+
+
+        $document->setValue('title_type', $title_type);
+        $document->setValue('title_model', $title_model);
+        $document->setValue('id', $id);
+        $document->setValue('number_system', $number_system);
+        $document->setValue('number_individual', $number_individual);
+        $document->setValue('number_individual_bix', $number_individual_bix);
+        $document->setValue('number_parties', $number_parties);
+        $document->setValue('code_product', $code_product);
+        $document->setValue('code_activation', $code_activation);
+
+        $document->setValue('money_sum', $money_sum);
+        $document->setValue('number_Quantity', $number_Quantity);
+        $document->setValue('money_cost', $money_cost);
+        $document->setValue('title_view', $title_view);
+        $document->setValue('title_company', $title_company);
+        $document->setValue('title_branch', $title_branch);
+        $document->setValue('title_status', $title_status);
+        $document->setValue('title_teams', $title_teams);
+        $document->setValue('title_description', $title_description);
+        $document->setValue('title_seller', $title_seller);
+        $document->setValue('service_organization', $service_organization);
+        $document->setValue('title_note', $title_note);
+        $document->setValue('data_inventory', $data_inventory);
+        $document->setValue('warranty_do', $warranty_do);
+        $document->setValue('data_today', $data_today);
+
+        $document->saveAs($outputFile);
+        // Имя скачиваемого файла
+        $downloadFile = $outputFile;
+
+        // Контент-тип означающий скачивание
+        header("Content-Type: application/octet-stream");
+        // Размер в байтах
+        header("Accept-Ranges: bytes");
+        // Размер файла
+        header("Content-Length: " . filesize($downloadFile));
+        // Расположение скачиваемого файла
+        header("Content-Disposition: attachment; filename=" . $downloadFile);
+        // Прочитать файл
+        readfile($downloadFile);
+        unlink($outputFile);
     }
 }

@@ -84,9 +84,13 @@ Route::group(['prefix' => 'model-object'], function () {
 
 
 
-Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index'); //processesFile
-Route::post('/processesFile/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word'); //processesFile
-Route::post('/processesFile/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation'); //processesFile/vacation
+Route::group(['prefix' => 'processes'], function () {
+    Route::get('/', [ProcessesController::class, 'index'])->name('processes.index'); //processesFile
+    Route::post('/nda', [ProcessesController::class, 'nda_word'])->name('processesFile.nda_word'); //processesFile
+    Route::post('/vacation', [ProcessesController::class, 'vacation'])->name('processesFile.vacation'); //processesFile/vacation
+    Route::post('/Cardinal', [ProcessesController::class, 'Cardinal'])->name('processesFile.Cardinal'); //processesFile/vacation
+});
+
 
 Route::resource('/company', CompanyController::class);
 Route::get('/global_settings', [IndexController::class, 'global_settings'])->name('global_settings.index'); //global_settings

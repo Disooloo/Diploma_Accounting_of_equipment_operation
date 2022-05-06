@@ -394,61 +394,6 @@
                     <!-- /.form group -->
 
 
-                    <!-- inventory_boolean -->
-                    <div class="form-group">
-                        <label>Нужна инвентаризация ?</label>
-                        <div class="input-group">
-                            <input name="inventory_boolean" type="hidden" min="0" max="1"
-                                   class="form-control" value="{{$inventory_boolean_true}}"/>
-                            @if($inventory_boolean_true == 1)
-                                <div class="alert alert-success">
-                                    Мне нужна инвернаризация
-                                </div>
-                            @endif
-                            @if($inventory_boolean_true == 0)
-                                <div class="alert alert-danger">
-                                    Мне не нужна инвернаризация
-                                </div>
-                            @endif
-                            <a type="button" class="btn btn-success" wire:click="inventory_boolean1">Да</a>
-                            <a type="button" class="btn btn-danger" wire:click="inventory_boolean0">Нет</a>
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
-
-
-                    <!-- data_inventory -->
-                    <div class="form-group">
-                        <label>Дата инвентаризации</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                            <span class="input-group-text"><i
-                                                    class="fas fa-file"></i></span>
-                            </div>
-                            <input name="data_inventory" type="date"
-                                   class="form-control"/>
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
-
-                    <!-- data_inventory -->
-                    <div class="form-group">
-                        <label>Дата инвентаризации</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                            <span class="input-group-text"><i
-                                                    class="fas fa-file"></i></span>
-                            </div>
-                            <input name="data_inventory" type="date"
-                                   class="form-control"/>
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
-
-
                     <!-- warranty_do -->
                     <div class="form-group">
                         <label>Гарантия до</label>
@@ -457,7 +402,7 @@
                                             <span class="input-group-text"><i
                                                     class="fas fa-file"></i></span>
                             </div>
-                            <input name="license_do" type="date"
+                            <input name="warranty_do" type="date"
                                    class="form-control"/>
                         </div>
                         <!-- /.input group -->
@@ -487,7 +432,7 @@
                         <select name="title_wrote"
                                 class="form-control select2bs4 select2-hidden-accessible"
                                 style="width: 100%;">
-                            <option disabled selected>Не списанно</option>
+                            <option selected>Не списанно</option>
                             @foreach($teamss as $te)
                                 <option
                                     value="{{$te->LastName}} {{$te->FirstName}} {{$te->Patronymic}}"
@@ -496,6 +441,9 @@
                         </select>
                     </div>
                     <!-- /.form group -->
+
+                    <input name="inventory_boolean" type="hidden"
+                           class="form-control" value="0"/>
 
                     <!-- id_order -->
                     <div class="form-group">

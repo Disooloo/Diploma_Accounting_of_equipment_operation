@@ -38,7 +38,6 @@ class CreateModelObjectsTable extends Migration
             $table->string('title_seller');
             $table->string('service_organization')->nullable();
             $table->date('data_inventory')->nullable(); //
-            $table->boolean('inventory_boolean')->default(0); // Учитывание в инвенторизации. 0 -> нет
             $table->date('warranty_do')->nullable();
             $table->date('license_do')->nullable();
 

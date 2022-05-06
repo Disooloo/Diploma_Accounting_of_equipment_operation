@@ -32,9 +32,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <!-- fullcalendar -->
     <script src="{{asset('fullcalendar/css/jquery-ui.css')}}"></script>
-    <script src="{{asset('fullcalendar/css/fc/fullcalendar.css')}}"></script>
-    <script src="{{asset('fullcalendar/css/fc/fullcalendar.print.css')}}"></script>
-    <script src="{{asset('fullcalendar/css/css/style.css')}}"></script>
+    <script src="{{asset('fullcalendar/fc/fullcalendar.css')}}"></script>
+    <script src="{{asset('fullcalendar/fc/fullcalendar.print.css')}}"></script>
+    <script src="{{asset('fullcalendar/css/style.css')}}"></script>
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
