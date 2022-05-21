@@ -1,7 +1,6 @@
 <section class="content">
     <div class="card">
         <!-- Default box -->
-
         <div class="card-body ">
             @if($createData)
             <div class="card card-blue float-right col-md-5">
