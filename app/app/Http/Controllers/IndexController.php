@@ -10,10 +10,10 @@ use App\Models\Team;
 use App\Models\tobject;
 use App\Models\vobject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
-
 
     public function test()
     {
@@ -27,8 +27,9 @@ class IndexController extends Controller
         $notifications = notification::orderBy('id', 'desc');
         $notifications_count = notification::all()->count();
 
-        $teams = Team::orderBy('id', 'desc')->paginate(8);
-        $team_count = Team::all()->count();
+        $teams = Team::orderBy('id', 'desc')->paginate(15);
+        $team_count = "asd";
+
 
         return view('admin.index', compact('notifications', 'notifications_count',
             'team_count', 'teams'));
@@ -89,13 +90,13 @@ class IndexController extends Controller
 
     public function my_profiles()
     {
-
-        $notifications = notification::orderBy('id', 'desc');
-        $notifications_count = notification::all()->count();
-
-
-        return view('admin.index', compact('notifications',
-            'notifications_count',));
+//
+//        $notifications = notification::orderBy('id', 'desc');
+//        $notifications_count = notification::all()->count();
+//
+//
+//        return view('admin.index', compact('notifications',
+//            'notifications_count'));
     }
     public function comp()
     {
@@ -215,7 +216,9 @@ class IndexController extends Controller
     }
     public function repair()
     {
-        return view('admin.repair.index');
+        $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
+        $notifications_count = notification::all()->count();
+        return view('admin.repair.index', compact('notifications', 'notifications_count'));
     }
     public function objectMain()
     {
@@ -223,8 +226,6 @@ class IndexController extends Controller
         $notifications_count = notification::all()->count();
         return view('admin.objectMain.index', compact('notifications', 'notifications_count'));
     }
-
-
     public function movements()
     {
         return view('admin.movements.index');
@@ -236,8 +237,6 @@ class IndexController extends Controller
         $notifications_count = notification::all()->count();
 
         $params = Gparams::orderBy('created_at', 'DESC')->paginate(1);
-
-
 
         return view('admin.global_set.index', compact('params', 'notifications',
             'notifications_count'));

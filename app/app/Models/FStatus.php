@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FStatus extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $fillable = ["title","description"];
 }

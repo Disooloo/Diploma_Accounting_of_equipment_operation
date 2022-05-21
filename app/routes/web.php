@@ -29,15 +29,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 //// Главные
 Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
-//Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
+Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
 //Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
-//
-//
-//
-
-
-//
-Route::resource('status', StatsController::class); // Потом вернуться
 //
 //
 Route::get('/my_profiles', [IndexController::class, 'my_profiles'])->name('my_profiles_user');
@@ -76,6 +69,7 @@ Route::get('/view_object', [IndexController::class, 'view_object'])->name('view_
 Route::get('/type_object', [IndexController::class, 'type_object'])->name('type_object'); // Тип обьектов
 Route::get('/type_work', [IndexController::class, 'type_work'])->name('type_work'); // Тип работы
 Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
+Route::resource('status', StatsController::class);
 
 Route::group(['prefix' => 'model-object'], function () {
     Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
