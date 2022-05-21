@@ -568,9 +568,9 @@
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
                     <p>Пример</p>
-                    <p>Программа, мебель, оборудование и тд. Добавить <a href="{{route('view_object')}}">вид обьекта</a>
+                    <p>
+                        Программа, мебель, оборудование и тд. Добавить <a href="{{route('view_object')}}">вид обьекта</a>
                     </p>
-
                 </div>
             </div>
         </div>
@@ -583,7 +583,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
@@ -621,7 +620,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
