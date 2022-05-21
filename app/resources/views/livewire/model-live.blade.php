@@ -65,32 +65,33 @@
                             <tr class="odd">
                                 <td>
                                     <div class="col-md-4">
-                                        <div class="col-md-2">
-                                            <button wire:click="edit({{$model->id}})" class="btn btn-info mr-3"><i
+                                        <div class="col-md-2"
+                                             style="display: flex; height: 75px;">
+                                            <button wire:click="edit({{$model->id}})" class="btn btn-info"><i
                                                     class="fas fa-pen"></i>
                                             </button>
 
-                                            <button wire:click="edit({{$model->id}})" class="btn btn-warning mr-3"><i
+                                            <button wire:click="repair({{$model->id}})" class="btn btn-warning "><i
                                                     class="fas fa-hammer"></i>
                                             </button>
-                                        </div>
-                                        <div class="col-md-2">
+
                                             <form target="_myFrame"
+                                                  style="width: 50px;"
                                                   action="{{route('processesFile.Cardinal')}}" method="post">
                                                 @csrf
                                                 @include('admin.model_object.Cardinal')
 
-                                                <button type="submit"  style="width: 106px; margin-top: 5px; margin-bottom: 5px;" class="btn btn-secondary mr-3"><i
+                                                <button type="submit"
+                                                        class="btn btn-secondary"><i
                                                         class="fas fa-id-card"></i>
                                                 </button>
                                             </form>
 
-                                            <button style="width: 106px;" wire:click="remove({{$model->id}})" class="btn btn-danger"><i
-                                                    class="fas fa-trash-alt"></i>
+                                            <button wire:click="remove({{$model->id}})" class="btn btn-danger"><i
+                                                    class="fas fa-trash-alt "></i>
                                             </button>
                                         </div>
                                     </div>
-
                                 </td>
                                 <td>{{$model->id}}</td>
                                 <td>{{$model->title_view}}</td>

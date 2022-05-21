@@ -24,6 +24,8 @@ class ModelLive extends Component
     public $storeOn = true;
     public $nextBtn = false;
     public $nextBtn1 = false;
+    public $estistart = false;
+
 
 
     protected $rules = [
@@ -68,11 +70,17 @@ class ModelLive extends Component
     public function addCard()
     {
         $this->storeOn = false;
+        $this->estistart = false;
     }
 
     public function editOn()
     {
         $this->storeOn = true;
+    }
+
+    public function repair()
+    {
+        dd('200');
     }
 
     public function remove($id)
@@ -91,8 +99,11 @@ class ModelLive extends Component
         $this->inventory_boolean_true = 0;
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $this->storeOn = false;
+        $this->estistart = true;
+
 
     }
 
