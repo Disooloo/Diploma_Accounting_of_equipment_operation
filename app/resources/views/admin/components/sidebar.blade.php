@@ -67,7 +67,7 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('model-object')}}" class="nav-link {{ request()->routeIs('model-object') ? 'active' : '' }}">
+                            <a href="{{route('model-object.index')}}" class="nav-link {{ request()->routeIs('model-object.index') ? 'active' : '' }}">
                                 <i class="fas fa-desktop mr-2"></i>
                                 <p>{{$references['mObject']}}</p>
                             </a>

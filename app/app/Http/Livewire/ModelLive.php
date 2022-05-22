@@ -19,12 +19,15 @@ class ModelLive extends Component
 {
 
     public $views, $type, $model, $title, $description, $img, $teams, $number_Quantity,
-        $money_cost, $money_sum, $inventory_boolean_true;
+        $money_cost, $money_sum, $inventory_boolean_true, $teamSent, $dateBreakdown, $dateDispatch,
+        $statusRepair, $sum ,$service_organization;
+
 
     public $storeOn = true;
     public $nextBtn = false;
     public $nextBtn1 = false;
     public $estistart = false;
+    public $repairForm = false;
 
 
 
@@ -57,6 +60,7 @@ class ModelLive extends Component
         $this->storeOn = true;
     }
 
+
     public function bntNext()
     {
         $this->nextBtn = true;
@@ -71,17 +75,25 @@ class ModelLive extends Component
     {
         $this->storeOn = false;
         $this->estistart = false;
+        $this->repairForm = false;
     }
 
     public function editOn()
     {
         $this->storeOn = true;
+        $this->repairForm = false;
     }
 
-    public function repair()
+    public function repair($id)
     {
-        dd('200');
+        $this->repairForm = true;
+        $this->storeOn = false;
+        $this->estistart = false;
+
+        $model = ModelObject::findOrFail($id);
+        return $model;
     }
+
 
     public function remove($id)
     {
@@ -103,8 +115,6 @@ class ModelLive extends Component
     {
         $this->storeOn = false;
         $this->estistart = true;
-
-
     }
 
 

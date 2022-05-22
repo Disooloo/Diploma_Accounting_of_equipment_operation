@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Helpers\Telegram;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -27,15 +31,44 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
     /**
      * Register the exception handling callbacks for the application.
      *
      * @return void
      */
+
+
+    protected $telegram;
+
+    public function __construct(Container $container, Telegram $telegram)
+    {
+        parent::__construct($container);
+        $this->telegram = $telegram;
+    }
+
+    public function report(Throwable $e)
+    {
+        $data = [
+            'description' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ];
+
+        $this->telegram->sendMessage(env('CHAT_TELEGRAM_REPAIR_ID'), (string)view('bots.report', $data));
+
+        // 'chat_id' => 978513684,
+        //'text' => (string)view('bots.report', $data),
+
+    }
+
+
     public function register()
     {
         $this->reportable(function (Throwable $e) {
             //
         });
     }
+
+
 }

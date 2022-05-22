@@ -15,15 +15,19 @@
                 </div>
                 <a href="{{route('export_model_object')}}" class="btn btn-secondary mr-2 mt-3">Выгрузить</a>
             </div>
-            @if($storeOn)
+
+            @if($repairForm)
+                @include('admin.model_object.repairForm')
+            @elseif($storeOn)
                 <div class="table-responsive">
                     <table id="example2"
                            class="table text-nowrap table-bordered table-hover "
                            aria-describedby="example2_info">
                         <thead>
-                        <tr>
+                        <tr class="asd-a2344">
                             <th rowspan="1" colspan="1">Дуйствие</th>
                             <th rowspan="1" colspan="1">id</th>
+                            <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Вид</th>
                             <th rowspan="1" colspan="1">Тип</th>
                             <th rowspan="1" colspan="1">Модель</th>
@@ -32,7 +36,6 @@
                             <th rowspan="1" colspan="1">Изображение</th>
                             <th rowspan="1" colspan="1">Компания</th>
                             <th rowspan="1" colspan="1">Филиал</th>
-                            <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Серийный номер</th>
                             <th rowspan="1" colspan="1">Инвентарный номер</th>
                             <th rowspan="1" colspan="1">Инв номер бухгалтерии</th>
@@ -61,7 +64,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($models as $model)
+
+                        @forelse($models as $model)
+                            @if($model->repairPosition == 0)
                             <tr class="odd">
                                 <td>
                                     <div class="col-md-4">
@@ -71,9 +76,11 @@
                                                     class="fas fa-pen"></i>
                                             </button>
 
-                                            <button wire:click="repair({{$model->id}})" class="btn btn-warning "><i
-                                                    class="fas fa-hammer"></i>
-                                            </button>
+                                            <a href="{{route('model-object.edit', $model->id)}}" type="button"  class="btn btn-warning"
+                                               wire:click="repair({{$model->id}})"
+                                            >
+                                                    <i class="fas fa-hammer"></i>
+                                            </a>
 
                                             <form target="_myFrame"
                                                   style="width: 50px;"
@@ -94,6 +101,13 @@
                                     </div>
                                 </td>
                                 <td>{{$model->id}}</td>
+                                @if($model->title_status == "В ремонте")
+                                    <td style="background:#D43343;">{{$model->title_status}}</td>
+                                @elseif($model->title_status == "На складе")
+                                    <td style="background:#F39C12; color: #000">{{$model->title_status}}</td>
+                                @else
+                                    <td >{{$model->title_status}}</td>
+                                @endif
                                 <td>{{$model->title_view}}</td>
                                 <td>{{$model->title_type}}</td>
                                 <td>{{$model->title_model}}</td>
@@ -107,7 +121,6 @@
                                 </td>
                                 <td>{{$model->title_company}}</td>
                                 <td>{{$model->title_branch}}</td>
-                                <td>{{$model->title_status}}</td>
                                 <td>{{$model->number_system}}</td>
                                 <td>{{$model->number_individual}}</td>
                                 <td>{{$model->number_individual_bix}}</td>
@@ -141,12 +154,27 @@
                                 <td>{{$model->updated_at}}</td>
 
                             </tr>
-                        @endforeach
+                            @endif
+                        @empty
+
+
+                            <p class="m-3">Не найдено записей -> <a wire:click="addCard" class="njkj-2837643"> добавить новую</a></p>
+
+                            <style>
+                                .asd-a2344{
+                                    display: none;
+                                }
+                                .njkj-2837643{
+                                    cursor: pointer;
+                                }
+                            </style>
+                        @endforelse
                         </tbody>
                         <tfoot>
-                        <tr>
+                        <tr class="asd-a2344">
                             <th rowspan="1" colspan="1">Дуйствие</th>
                             <th rowspan="1" colspan="1">id</th>
+                            <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Вид</th>
                             <th rowspan="1" colspan="1">Тип</th>
                             <th rowspan="1" colspan="1">Модель</th>
@@ -155,7 +183,6 @@
                             <th rowspan="1" colspan="1">Изображение</th>
                             <th rowspan="1" colspan="1">Компания</th>
                             <th rowspan="1" colspan="1">Филиал</th>
-                            <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Серийный номер</th>
                             <th rowspan="1" colspan="1">Инвентарный номер</th>
                             <th rowspan="1" colspan="1">Инв номер бухгалтерии</th>

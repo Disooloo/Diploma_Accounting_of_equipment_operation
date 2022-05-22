@@ -186,11 +186,12 @@
                                 <select name="title_status"
                                         class="form-control select2bs4 select2-hidden-accessible"
                                         style="width: 100%;">
+
                                     <option disabled value="title_status"></option>
                                     <option disabled>Не выбрано</option>
                                     @foreach($status as $stat)
                                         <option
-                                            value="#{{$stat->id}} {{$stat->title}}"
+                                            value="{{$stat->title}}"
                                         >#{{$stat->id}} {{$stat->title}}</option>
                                     @endforeach
                                 </select>
@@ -722,7 +723,7 @@
                                 <option disabled selected>Не выбрано</option>
                                 @foreach($status as $stat)
                                     <option
-                                        value="#{{$stat->id}} {{$stat->title}}"
+                                        value="{{$stat->title}}"
                                     >#{{$stat->id}} {{$stat->title}}</option>
                                 @endforeach
                             </select>

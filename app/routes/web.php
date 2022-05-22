@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BranchesConstoller;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\ModelObjectController;
 use App\Http\Controllers\Admin\NotificationsConstoller;
 use App\Http\Controllers\Admin\ProcessesController;
 use App\Http\Controllers\Admin\StatsController;
@@ -71,10 +72,14 @@ Route::get('/type_work', [IndexController::class, 'type_work'])->name('type_work
 Route::get('/admins', [App\Http\Controllers\IndexController::class, 'full_user_adm'])->name('full_user_adm'); // Пользователи
 Route::resource('status', StatsController::class);
 
-Route::group(['prefix' => 'model-object'], function () {
-    Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
-    Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
-});
+
+Route::resource('model-object', ModelObjectController::class);
+//Route::group(['prefix' => 'model-object'], function () {
+//    Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
+//    Route::get('/repair-edit/{_id}', [IndexController::class, 'modelObjectFormRepairEdit'])->name('modelObjectFormRepairEdit');
+//    Route::put('/repair', [IndexController::class, 'modelObjectFormRepair'])->name('modelObjectFormRepair');
+//    Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
+//});
 
 
 
@@ -114,3 +119,12 @@ Route::get('/login', function () {
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Telegram bot
+Route::get('/bot_123', function (){
+    \Illuminate\Support\Facades\Http::post('https://api.tlgr.org/bot5119745285:AAEbsU05vtJMlG60RNyPaYo8xMCmeOGY9vs/sendMessage',
+    ['chat_id' => 978513684,
+        'text' => "<b>test 200</b>",
+        'parse_mode' => 'html'
+    ]);
+});
