@@ -45,13 +45,25 @@ class CreateModelObjectsTable extends Migration
             $table->string('title_wrote')->nullable();
             $table->string('qr_code')->nullable();
 
-
-
             $table->string('title_domain')->nullable();
             $table->string('system_name')->nullable();
             $table->string('ip_address')->nullable();
             $table->string('MAC_address')->nullable();
             $table->string('title_note')->nullable();
+
+            // ремонт
+
+            $table->date('dateBreakdown')->nullable(); //Дата поломки
+            $table->date('dateDispatch')->nullable(); //Дата отправки
+            $table->date('dateReceipt')->nullable(); //Дата получения
+            $table->string('statusRepair')->nullable(); // какой ремонт
+            $table->string('noteRepair')->nullable(); //Примечание для ремонта
+            $table->string('sum')->default(0); //Стоимость
+            $table->string('teamCreate')->nullable(); // Создал
+            $table->string('teamSent')->nullable(); // Отправил
+            $table->string('teamReceived')->nullable(); // Получил
+            $table->integer('repairPosition')->default(0); // позиция ремонта
+            $table->string('secretKey')->nullable(); // Секретный токен
 
             $table->timestamps();
         });
