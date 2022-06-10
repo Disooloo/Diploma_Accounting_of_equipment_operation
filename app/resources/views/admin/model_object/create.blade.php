@@ -1108,7 +1108,7 @@
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
-                    <p>Пример</p>
+                    <p>Вид обьекта</p>
                     <p>
                         Программа, мебель, оборудование и тд. Добавить <a href="{{route('view_object')}}">вид
                             обьекта</a>
@@ -1120,7 +1120,7 @@
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
-                    <p>Пример</p>
+                    <p>Тип обьекта</p>
                     <p>Ноутбук, принтер, exel и тд. Добавить <a href="{{route('type_object')}}">тип модели</a></p>
                 </div>
             </div>
@@ -1130,16 +1130,7 @@
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
                     <p>Сотрудник который будет ответственный за обьект</p>
-                    <p>Если нет нужного. Добавить <a href="{{route('team.index')}}">нового отрудника</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="cardHis mt-5 " style="margin-top: 150px;">
-            <div class="card-header card card-primary card-outline ">
-                <div class="card-body">
-                    <p>Тут нужно прописать название самой модели обьекта. Напиример</p>
-                    <p>Если это оборудование - Asus, Acer, Apple, Nokia и тд. Если ПО, пишем версию v1, v1.22.2 </p>
+                    <p>Если нет нужного. Добавить <a href="{{route('team.index')}}">нового сотрудника</a></p>
                 </div>
             </div>
         </div>
@@ -1157,7 +1148,7 @@
         <div class="cardHis mt-5 " style="margin-top: 150px;">
             <div class="card-header card card-primary card-outline ">
                 <div class="card-body">
-                    <p>Более точное нахождение</p>
+                    <p>Местоположение</p>
                     <p>Если нет нужного. Добавить <a href="{{route('location.index')}}">новое место</a></p>
                 </div>
             </div>
@@ -1181,8 +1172,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
 </div>

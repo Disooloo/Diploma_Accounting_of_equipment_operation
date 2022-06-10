@@ -124,6 +124,7 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phpoffice/phpspreadsheet" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/laminas/laminas-escaper" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/myclabs/php-enum" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/telegram-bot/api" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

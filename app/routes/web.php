@@ -25,12 +25,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Номеклатура
+
 //
 //Route::get('/news', [App\Http\Controllers\IndexController::class, 'news'])->name('news'); // news
 //// Главные
 Route::get('/13', [App\Http\Controllers\IndexController::class, 'history'])->name('history'); // История изменения
-Route::get('/14', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
+Route::get('/repair', [App\Http\Controllers\IndexController::class, 'repair'])->name('repair'); // Ремонты
 //Route::get('/17', [App\Http\Controllers\IndexController::class, 'movements'])->name('movements'); // Перемещения
 //
 //
@@ -74,12 +74,12 @@ Route::resource('status', StatsController::class);
 
 
 Route::resource('model-object', ModelObjectController::class);
-//Route::group(['prefix' => 'model-object'], function () {
+Route::group(['prefix' => 'model-object'], function () {
 //    Route::get('/', [IndexController::class, 'mode_object'])->name('model-object');
-//    Route::get('/repair-edit/{_id}', [IndexController::class, 'modelObjectFormRepairEdit'])->name('modelObjectFormRepairEdit');
-//    Route::put('/repair', [IndexController::class, 'modelObjectFormRepair'])->name('modelObjectFormRepair');
-//    Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
-//});
+    Route::get('/repair-edit/{_id}', [IndexController::class, 'modelObjectFormRepairEdit'])->name('modelObjectFormRepairEdit');
+    Route::put('/repair', [IndexController::class, 'modelObjectFormRepair'])->name('modelObjectFormRepair');
+    Route::post('/create', [IndexController::class, 'mode_object_create'])->name('mode_object_create');
+});
 
 
 

@@ -39,28 +39,28 @@ class Handler extends ExceptionHandler
      */
 
 
-    protected $telegram;
-
-    public function __construct(Container $container, Telegram $telegram)
-    {
-        parent::__construct($container);
-        $this->telegram = $telegram;
-    }
-
-    public function report(Throwable $e)
-    {
-        $data = [
-            'description' => $e->getMessage(),
-            'file' => $e->getFile(),
-            'line' => $e->getLine()
-        ];
-
-        $this->telegram->sendMessage(env('CHAT_TELEGRAM_REPAIR_ID'), (string)view('bots.report', $data));
-
-        // 'chat_id' => 978513684,
-        //'text' => (string)view('bots.report', $data),
-
-    }
+//    protected $telegram;
+//
+//    public function __construct(Container $container, Telegram $telegram)
+//    {
+//        parent::__construct($container);
+//        $this->telegram = $telegram;
+//    }
+//
+//    public function report(Throwable $e)
+//    {
+//        $data = [
+//            'description' => $e->getMessage(),
+//            'file' => $e->getFile(),
+//            'line' => $e->getLine()
+//        ];
+//
+//        $this->telegram->sendMessage(env('CHAT_TELEGRAM_REPAIR_ID'), (string)view('bots.report', $data));
+//
+//        // 'chat_id' => 978513684,
+//        //'text' => (string)view('bots.report', $data),
+//
+//    }
 
 
     public function register()

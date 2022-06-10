@@ -327,7 +327,15 @@ class IndexController extends Controller
     {
         $notifications = notification::orderBy('id', 'desc')->limit(5)->get();
         $notifications_count = notification::all()->count();
-        return view('admin.repair.index', compact('notifications', 'notifications_count'));
+        $models = ModelObject::latest()->paginate(10);
+
+        $count_processing = DB::table('model_objects')->where('repairPosition', '1')->count();
+        $count_rejection = DB::table('model_objects')->where('repairPosition', '2')->count();
+        $count_repair13 = DB::table('model_objects')->where('repairPosition', '3')->count();
+
+
+        return view('admin.repair.index', compact('notifications',
+            'notifications_count', 'models', 'count_processing','count_rejection', 'count_repair13'));
     }
     public function objectMain()
     {

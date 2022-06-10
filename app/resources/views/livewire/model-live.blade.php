@@ -25,7 +25,7 @@
                            aria-describedby="example2_info">
                         <thead>
                         <tr class="asd-a2344">
-                            <th rowspan="1" colspan="1">Дуйствие</th>
+                            <th rowspan="1" colspan="1">Действие</th>
                             <th rowspan="1" colspan="1">id</th>
                             <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Вид</th>
@@ -67,104 +67,104 @@
 
                         @forelse($models as $model)
                             @if($model->repairPosition == 0)
-                            <tr class="odd">
-                                <td>
-                                    <div class="col-md-4">
-                                        <div class="col-md-2"
-                                             style="display: flex; height: 75px;">
-                                            <button wire:click="edit({{$model->id}})" class="btn btn-info"><i
-                                                    class="fas fa-pen"></i>
-                                            </button>
-
-                                            <a href="{{route('model-object.edit', $model->id)}}" type="button"  class="btn btn-warning"
-                                               wire:click="repair({{$model->id}})"
-                                            >
-                                                    <i class="fas fa-hammer"></i>
-                                            </a>
-
-                                            <form target="_myFrame"
-                                                  style="width: 50px;"
-                                                  action="{{route('processesFile.Cardinal')}}" method="post">
-                                                @csrf
-                                                @include('admin.model_object.Cardinal')
-
-                                                <button type="submit"
-                                                        class="btn btn-secondary"><i
-                                                        class="fas fa-id-card"></i>
+                                <tr class="odd">
+                                    <td>
+                                        <div class="col-md-4">
+                                            <div class="col-md-2"
+                                                 style="display: flex; height: 75px;">
+                                                <button wire:click="edit({{$model->id}})" class="btn btn-info"><i
+                                                        class="fas fa-pen"></i>
                                                 </button>
-                                            </form>
 
-                                            <button wire:click="remove({{$model->id}})" class="btn btn-danger"><i
-                                                    class="fas fa-trash-alt "></i>
-                                            </button>
+                                                <a href="{{route('model-object.edit', $model->id)}}" type="button"
+                                                   class="btn btn-warning"
+                                                   wire:click="repair({{$model->id}})"
+                                                >
+                                                    <i class="fas fa-hammer"></i>
+                                                </a>
+
+                                                <form target="_myFrame"
+                                                      style="width: 50px;"
+                                                      action="{{route('processesFile.Cardinal')}}" method="post">
+                                                    @csrf
+                                                    @include('admin.model_object.Cardinal')
+
+                                                    <button type="submit"
+                                                            class="btn btn-secondary"><i
+                                                            class="fas fa-id-card"></i>
+                                                    </button>
+                                                </form>
+
+                                                <button wire:click="remove({{$model->id}})" class="btn btn-danger"><i
+                                                        class="fas fa-trash-alt "></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>{{$model->id}}</td>
-                                @if($model->title_status == "В ремонте")
-                                    <td style="background:#D43343;">{{$model->title_status}}</td>
-                                @elseif($model->title_status == "На складе")
-                                    <td style="background:#F39C12; color: #000">{{$model->title_status}}</td>
-                                @else
-                                    <td >{{$model->title_status}}</td>
-                                @endif
-                                <td>{{$model->title_view}}</td>
-                                <td>{{$model->title_type}}</td>
-                                <td>{{$model->title_model}}</td>
-                                <td>{{$model->title_teams}}</td>
-                                <td>{{$model->title_description}}</td>
-                                <td>
-                                    <a href="{{$model->object_img}}">
-                                        <img
-                                            src="{{$model->object_img}}"
-                                            width="150px"></a>
-                                </td>
-                                <td>{{$model->title_company}}</td>
-                                <td>{{$model->title_branch}}</td>
-                                <td>{{$model->number_system}}</td>
-                                <td>{{$model->number_individual}}</td>
-                                <td>{{$model->number_individual_bix}}</td>
-                                <td>{{$model->number_parties}}</td>
-                                <td>{{$model->title_spawn}}</td>
-                                <td>{{$model->code_product}}</td>
-                                <td>{{$model->code_activation}}</td>
-                                <td>{{$model->number_Quantity}}</td>
-                                <td>{{$model->money_cost}} ₽</td>
-                                <td>{{$model->money_sum}} ₽</td>
-                                <td>{{$model->title_seller}}</td>
-                                <td>{{$model->service_organization}}</td>
-                                <td>{{$model->data_inventory}}</td>
-                                <td>
-                                    @if($model->inventory_boolean == 1)
-                                        Нужна инвенторизация
+                                    </td>
+                                    <td>{{$model->id}}</td>
+                                    @if($model->title_status == "В ремонте")
+                                        <td style="background:#D43343;">{{$model->title_status}}</td>
+                                    @elseif($model->title_status == "На складе")
+                                        <td style="background:#F39C12; color: #000">{{$model->title_status}}</td>
                                     @else
-                                        Не нужна инвенторизация
+                                        <td>{{$model->title_status}}</td>
                                     @endif
-                                </td>
-                                <td>{{$model->warranty_do}}</td>
-                                <td>{{$model->license_do}}</td>
-                                <td>{{$model->created_at}}</td>
-                                <td>{{$model->title_wrote}}</td>
-                                <td>{{$model->id_order}}</td>
-                                <td>{{$model->title_domain}}</td>
-                                <td>{{$model->system_name}}</td>
-                                <td>{{$model->ip_address}}</td>
-                                <td>{{$model->MAC_address}}</td>
-                                <td>{{$model->title_note}}</td>
-                                <td>{{$model->updated_at}}</td>
+                                    <td>{{$model->title_view}}</td>
+                                    <td>{{$model->title_type}}</td>
+                                    <td>{{$model->title_model}}</td>
+                                    <td>{{$model->title_teams}}</td>
+                                    <td>{{$model->title_description}}</td>
+                                    <td>
+                                        <a href="{{$model->object_img}}">
+                                            <img
+                                                src="{{$model->object_img}}"
+                                                width="150px"></a>
+                                    </td>
+                                    <td>{{$model->title_company}}</td>
+                                    <td>{{$model->title_branch}}</td>
+                                    <td>{{$model->number_system}}</td>
+                                    <td>{{$model->number_individual}}</td>
+                                    <td>{{$model->number_individual_bix}}</td>
+                                    <td>{{$model->number_parties}}</td>
+                                    <td>{{$model->title_spawn}}</td>
+                                    <td>{{$model->code_product}}</td>
+                                    <td>{{$model->code_activation}}</td>
+                                    <td>{{$model->number_Quantity}}</td>
+                                    <td>{{$model->money_cost}} ₽</td>
+                                    <td>{{$model->money_sum}} ₽</td>
+                                    <td>{{$model->title_seller}}</td>
+                                    <td>{{$model->service_organization}}</td>
+                                    <td>{{$model->data_inventory}}</td>
+                                    <td>
+                                        @if($model->inventory_boolean == 1)
+                                            Нужна инвенторизация
+                                        @else
+                                            Не нужна инвенторизация
+                                        @endif
+                                    </td>
+                                    <td>{{$model->warranty_do}}</td>
+                                    <td>{{$model->license_do}}</td>
+                                    <td>{{$model->created_at}}</td>
+                                    <td>{{$model->title_wrote}}</td>
+                                    <td>{{$model->id_order}}</td>
+                                    <td>{{$model->title_domain}}</td>
+                                    <td>{{$model->system_name}}</td>
+                                    <td>{{$model->ip_address}}</td>
+                                    <td>{{$model->MAC_address}}</td>
+                                    <td>{{$model->title_note}}</td>
+                                    <td>{{$model->updated_at}}</td>
 
-                            </tr>
+                                </tr>
                             @endif
                         @empty
-
-
-                            <p class="m-3">Не найдено записей -> <a wire:click="addCard" class="njkj-2837643"> добавить новую</a></p>
-
+                            <p class="m-3">Не найдено записей -> <a wire:click="addCard" class="njkj-2837643"> добавить
+                                    новую</a></p>
                             <style>
-                                .asd-a2344{
+                                .asd-a2344 {
                                     display: none;
                                 }
-                                .njkj-2837643{
+
+                                .njkj-2837643 {
                                     cursor: pointer;
                                 }
                             </style>
@@ -172,7 +172,7 @@
                         </tbody>
                         <tfoot>
                         <tr class="asd-a2344">
-                            <th rowspan="1" colspan="1">Дуйствие</th>
+                            <th rowspan="1" colspan="1">Действие</th>
                             <th rowspan="1" colspan="1">id</th>
                             <th rowspan="1" colspan="1">Статус</th>
                             <th rowspan="1" colspan="1">Вид</th>

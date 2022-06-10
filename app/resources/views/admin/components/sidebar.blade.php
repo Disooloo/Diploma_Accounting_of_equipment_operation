@@ -13,6 +13,7 @@ $references = [
     "type_work" => "Типы работ",
     'admins' => "Пользователи",
     'mObject' => "Обьекты",
+    'repair' => 'Ремонты'
 ]
 
 ?>
@@ -73,9 +74,9 @@ $references = [
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('repair')}}" class="nav-link {{ request()->routeIs('repair') ? 'active' : '' }}">
                                 <i class="fas fa-tools mr-2"></i>
-                                <p>Ремонты</p>
+                                <p>{{$references['repair']}}</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -13,6 +13,14 @@
             white-space: nowrap;
         }
 
+        a {
+            transition: all 500ms ease;
+        }
+
+        a:hover {
+            border-bottom: 3px solid #fff;
+        }
+
         table.dataTable thead .sorting:after,
         table.dataTable thead .sorting:before,
         table.dataTable thead .sorting_asc:after,
@@ -50,62 +58,13 @@
     <div class="content-wrapper">
         <div class="callout callout-info ">
             <h5><i class="fas fa-info"></i> Подсказка:</h5>
-            У ремонтов, в логике системы, существует три стадии которые рекомендуется проходить последовательно: 1. Открытие ремонта для оборудования (ввод даты поломки и описание неисправности). 2. Отправка
-            оборудования в ремонт (ввод даты отправки и выбор сервисной организации). 3. Возврат оборудования из ремонта/закрытие ремонта (ввод даты возврата и стоимости ремонта). В ремонт можно вносить
+            У ремонтов, в логике системы, существует три стадии которые рекомендуется проходить последовательно: 1.
+            Открытие ремонта для оборудования (ввод даты поломки и описание неисправности). 2. Отправка
+            оборудования в ремонт (ввод даты отправки и выбор сервисной организации). 3. Возврат оборудования из
+            ремонта/закрытие ремонта (ввод даты возврата и стоимости ремонта). В ремонт можно вносить
             конментарии, изображения и файлы.
         </div>
-        <div class="card card-default collapsed-card container col-md-12">
-            <div class="card-header ">
-                <h3 class="card-title">Фильтр</h3>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Поиск...</label>
-                            <form action="post">
-                                <div class="input-group">
-                                    <input type="search" class="form-control form-control-lg" placeholder="...">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-lg btn-default">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Фильтр</label>
-                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
-                                    data-select2-id="9" tabindex="-1" aria-hidden="true">
-                                <option selected="selected" data-select2-id="11"></option>
-                                <option>Админ</option>
-                                <option>Пользователь</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <input type="submit" value="Создать" class="btn btn-success float-left">
-                    </div>
-                    <div class="col-6">
-                        <input type="submit" value="Применить фильтр" class="btn btn-info float-right">
-                    </div>
-                </div>
-            </div>
-
-            <!-- /.card-body -->
-        </div>
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -114,7 +73,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
                             <li class="breadcrumb-item active">Ремонты</li>
                         </ol>
                     </div>
@@ -127,176 +86,154 @@
             <div class="card">
                 <!-- Default box -->
                 <div class="card-body">
+
+                    <div class="card" style="position:relative;">
+                        <div class="item m-3 d-flex ">
+                            <p class="ml-4">В обработке: <span><b>{{$count_processing}}</b></span></p>
+                            <p class="ml-4">Отказов: <span><b>{{$count_rejection}}</b></span></p>
+                            <p class="ml-4">В ремонте: <span><b>{{$count_repair13}}</b></span></p>
+
+                            <a href="#" style="right: 10px; top: 10px; position: absolute"
+                               class="btn text-white active-38734">Выгрузить</a>
+                        </div>
+
+                    </div>
                     <div class="table-responsive">
                         <table id="example2"
-                               class="table text-nowrap table-bordered table-hover dataTable dtr-inline">
+                               class="table text-nowrap table-bordered table-hover "
+                               aria-describedby="example2_info">
                             <thead>
-                            <tr>
-                                <th>
-                                    id
-                                </th>
-                                <th>
-                                    Дата поломки
-                                </th>
-                                <th>
-                                    Дата отправки
-                                </th>
-                                <th>
-                                    Дата получения
-                                </th>
-                                <th>
-                                    Статус
-                                </th>
-                                <th>
-                                    Описание неисправности
-                                </th>
-                                <th rowspan="2">
-                                    Примечание
-                                </th>
-                                <th>
-                                    Стоимость
-                                </th>
-                                <th>
-                                    Сервисная организация
-                                </th>
-                                <th>
-                                    Создал
-                                </th>
-                                <th>
-                                    Отправил
-                                </th>
-                                <th>
-                                    Получил
-                                </th>
-                                <th>
-                                    Обьект id
-                                </th>
-                                <th>
-                                    Обьект вид
-                                </th>
-                                <th>
-                                    Обьект тип
-                                </th>
-                                <th>
-                                    Обьект модель
-                                </th>
-                                <th>
-                                    Обьект компания
-                                </th>
-                                <th>
-                                    Обьект филиал
-                                </th>
-                                <th>
-                                    Обьект место
-                                </th>
-                                <th>
-                                    Обьект статус
-                                </th>
-                                <th>
-                                    Обьект сотрудник
-                                </th>
-                                <th>
-                                    Обьект инвентарный номер
-                                </th>
-                                <th>
-                                    Инв номер бухгалтерии
-                                </th>
-                                <th>
-                                    Обьект серийный номерш
-                                </th>
+                            <tr class="asd-a2344">
+                                <th rowspan="1" colspan="1">Действие</th>
+                                <th rowspan="1" colspan="1">id</th>
+                                <th rowspan="1" colspan="1">Статус</th>
+                                <th rowspan="1" colspan="1">Вид</th>
+                                <th rowspan="1" colspan="1">Тип</th>
+                                <th rowspan="1" colspan="1">Модель</th>
+                                <th rowspan="1" colspan="1">Изображение</th>
+
+                                <th rowspan="1" colspan="1">Дата отправки</th>
+                                <th rowspan="1" colspan="1">Дата выхода из строя</th>
+                                <th rowspan="1" colspan="1">Статус поломки</th>
+                                <th rowspan="1" colspan="1">Описание поломки</th>
+                                <th rowspan="1" colspan="1">Стоимость</th>
+                                <th rowspan="1" colspan="1">Сервисная организация</th>
+                                <th rowspan="1" colspan="1">Сотрудник создал</th>
+                                <th rowspan="1" colspan="1">Сотрудник отправил</th>
+                                <th rowspan="1" colspan="1">Сотрудник получил</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">0</td>
-                                <td>04.01.2022 10:41:20</td>
-                                <td>04.01.2022 14:35:32</td>
-                                <td>04.01.2022 15:35:32</td>
-                                <td>Создан</td>
-                                <td><a href=""><i class="fas fa-file-alt"></i></a></td>
-                                <td><a href=""><i class="fas fa-file-alt"></i></a></td>
-                                <td>200,00</td>
-                                <td>ЗАО "Лидер Эксперт"</td>
-                                <td>UserName</td>
-                                <td>user1</td>
-                                <td>user2</td>
-                                <td>10</td>
-                                <td>Оборудование</td>
-                                <td>Монитор</td>
-                                <td>BENQ FP92E</td>
-                                <td>Эдельвейс</td>
-                                <td>Офис на Невском, СПб</td>
-                                <td>Склад</td>
-                                <td>На складе ОК</td>
-                                <td>Комаров А.</td>
-                                <td>100010</td>
-                                <td>01</td>
-                                <td>11111111</td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="dtr-control sorting_1" tabindex="0">1</td>
-                                <td>02.01.2022 10:41:20</td>
-                                <td>02.01.2022 14:35:32</td>
-                                <td>02.01.2022 15:35:32</td>
-                                <td>Создан</td>
-                                <td><a href=""><i class="fas fa-file-alt"></i></a></td>
-                                <td><a href=""><i class="fas fa-file-alt"></i></a></td>
-                                <td>250,00</td>
-                                <td>ЗАО "Лидер Эксперт"</td>
-                                <td>UserName</td>
-                                <td>user3</td>
-                                <td>user2</td>
-                                <td>16</td>
-                                <td>Оборудование</td>
-                                <td>Монитор</td>
-                                <td>BENQ FP92E</td>
-                                <td>Эдельвейс</td>
-                                <td>Офис на Невском, СПб</td>
-                                <td>Склад</td>
-                                <td>На складе ОК</td>
-                                <td>Комаров А.</td>
-                                <td>1020010</td>
-                                <td>012</td>
-                                <td>1113423</td>
-                            </tr>
+
+                            @forelse($models as $model)
+                                @if($model->repairPosition < 4 && $model->repairPosition > 0)
+                                    <tr class="odd">
+                                        <td>
+                                            <div class="col-md-4">
+                                                <div class="col-md-2"
+                                                     style="display: flex; height: 75px;">
+                                                    <button wire:click="edit({{$model->id}})" class="btn btn-info"><i
+                                                            class="fas fa-pen"></i>
+                                                    </button>
+                                                    <a href="{{route('model-object.edit', $model->id)}}" type="button"
+                                                       class="btn btn-warning"
+                                                       wire:click="repair({{$model->id}})"
+                                                    >
+                                                        <i class="fas fa-hammer"></i>
+                                                    </a>
+
+                                                    <form target="_myFrame"
+                                                          style="width: 50px;"
+                                                          action="{{route('processesFile.Cardinal')}}" method="post">
+                                                        @csrf
+                                                        @include('admin.model_object.Cardinal')
+
+                                                        <button type="submit"
+                                                                class="btn btn-secondary"><i
+                                                                class="fas fa-id-card"></i>
+                                                        </button>
+                                                    </form>
+
+                                                    <button wire:click="remove({{$model->id}})" class="btn btn-danger">
+                                                        <i
+                                                            class="fas fa-trash-alt "></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{$model->id}}</td>
+                                        <td>
+                                            @if($model->repairPosition == 1)
+                                                <p style="color: #b6b63a">Ремонт в обработке</p>
+                                            @elseif($model->repairPosition == 2)
+                                                <p style="color: #f12828">Сервисная компания отказалась в ремонте</p>
+                                            @elseif($model->repairPosition == 3)
+                                                <p style="color: #38a42e">Оборудование в ремонте</p>
+                                            @endif
+                                        </td>
+                                        <td>{{$model->title_view}}</td>
+                                        <td>{{$model->title_type}}</td>
+                                        <td>{{$model->title_model}}</td>
+                                        <td>
+                                            <a href="{{$model->object_img}}">
+                                                <img
+                                                    src="{{$model->object_img}}"
+                                                    width="150px"></a>
+                                        </td>
+                                        <td>{{$model->dateDispatch}}</td>
+                                        <td>{{$model->dateBreakdown}}</td>
+                                        <td>{{$model->statusRepair}}</td>
+                                        <td>{{$model->noteRepair}}</td>
+                                        <td>{{$model->sum}}
+                                            <sum>₽</sum>
+                                        </td>
+
+                                        <td>{{$model->servesOrganization}}</td>
+                                        <td>{{$model->teamCreate}}</td>
+                                        <td>{{$model->teamSent}}</td>
+                                        <td>{{$model->teamReceived}}</td>
+                                    </tr>
+                                @endif
+                            @empty
+                                <p class="m-3">Не найдено записей -> <a wire:click="addCard" class="njkj-2837643">
+                                        добавить
+                                        новую</a></p>
+                                <style>
+                                    .asd-a2344 {
+                                        display: none;
+                                    }
+
+                                    .njkj-2837643 {
+                                        cursor: pointer;
+                                    }
+                                </style>
+                            @endforelse
                             </tbody>
                             <tfoot>
-                            <tr>
+                            <tr class="asd-a2344">
+                                <th rowspan="1" colspan="1">Действие</th>
                                 <th rowspan="1" colspan="1">id</th>
-                                <th rowspan="1" colspan="1">Дата поломки</th>
-                                <th rowspan="1" colspan="1">Дата отправки</th>
-                                <th rowspan="1" colspan="1">Дата получения</th>
                                 <th rowspan="1" colspan="1">Статус</th>
-                                <th rowspan="1" colspan="1">Описание неисправности</th>
-                                <th rowspan="1" colspan="1">Примечание</th>
+                                <th rowspan="1" colspan="1">Вид</th>
+                                <th rowspan="1" colspan="1">Тип</th>
+                                <th rowspan="1" colspan="1">Модель</th>
+                                <th rowspan="1" colspan="1">Изображение</th>
+
+                                <th rowspan="1" colspan="1">Дата отправки</th>
+                                <th rowspan="1" colspan="1">Дата выхода из строя</th>
+                                <th rowspan="1" colspan="1">Статус поломки</th>
+                                <th rowspan="1" colspan="1">Описание поломки</th>
                                 <th rowspan="1" colspan="1">Стоимость</th>
                                 <th rowspan="1" colspan="1">Сервисная организация</th>
-                                <th rowspan="1" colspan="1">Создал</th>
-                                <th rowspan="1" colspan="1">Отправил</th>
-                                <th rowspan="1" colspan="1">Получил</th>
-                                <th rowspan="1" colspan="1">Обьект id</th>
-                                <th rowspan="1" colspan="1">Обьект вид</th>
-                                <th rowspan="1" colspan="1">Обьект тип</th>
-                                <th rowspan="1" colspan="1">Обьект модель</th>
-                                <th rowspan="1" colspan="1">Обьект компания</th>
-                                <th rowspan="1" colspan="1">Обьект филиал</th>
-                                <th rowspan="1" colspan="1">Обьект место</th>
-                                <th rowspan="1" colspan="1">Обьект статус</th>
-                                <th rowspan="1" colspan="1">Обьект сотрудник</th>
-                                <th rowspan="1" colspan="1">Обьект инвентарный номер</th>
-                                <th rowspan="1" colspan="1">Инв номер бухгалтерии</th>
-                                <th rowspan="1" colspan="1">Обьект серийный номер</th>
+                                <th rowspan="1" colspan="1">Сотрудник создал</th>
+                                <th rowspan="1" colspan="1">Сотрудник отправил</th>
+                                <th rowspan="1" colspan="1">Сотрудник получил</th>
                             </tr>
                             </tfoot>
                         </table>
                     </div>
-                    <!-- /.card-body -->
-                    <div style="display: none; width: 500px;" id="hidden" class="fancybox">
-                        <h2>Контент из скрытого div</h2>
-                        <img src="https://becompact.ru/upload/iblock/2ec/2ec3eba0b51ea40b19e5d8edf817eb54.jpg"
-                             width="250px" alt="">
-                    </div>
-                    <!--/.fancybox-->
+                {{$models->links()}}
+                <!--/.fancybox-->
                 </div>
             </div>
             <!-- /.card-body -->
