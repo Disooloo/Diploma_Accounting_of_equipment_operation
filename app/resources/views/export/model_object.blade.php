@@ -1,7 +1,7 @@
 <table>
     <thead>
     <tr>
-        <th style="background: #606060; color: #ffffff"><b>id</b></th>
+        <th style="background: #606060; color: #ffffff">id</th>
         <th style="background: #606060; color: #ffffff">Вид</th>
         <th style="background: #606060; color: #ffffff">Тип</th>
         <th style="background: #606060; color: #ffffff">Модель</th>

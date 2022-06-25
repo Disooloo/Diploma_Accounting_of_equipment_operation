@@ -19,7 +19,6 @@ class CheckIsAdmin
     {
         $user = Auth::user();
 
-
         if(Auth::user()){
             if(!$user->inAdmin()){
                 return redirect('/403');
